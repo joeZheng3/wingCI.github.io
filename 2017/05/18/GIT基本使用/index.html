@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="GIT基本使用 Homebrew安装 /usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  ##GIT安装  git version 判断是否安装git Mac可以通过Homebrew安装，brew install git Linux可以通过y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIT基本使用">
+<meta property="og:url" content="http://yoursite.com/2017/05/18/GIT基本使用/index.html">
+<meta property="og:site_name" content="Wingci&#39;s Blog">
+<meta property="og:description" content="GIT基本使用 Homebrew安装 /usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  ##GIT安装  git version 判断是否安装git Mac可以通过Homebrew安装，brew install git Linux可以通过y">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3985563-ade5b67f52f8675c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:image" content="https://cdn.liaoxuefeng.com/cdn/files/attachments/0013849087937492135fbf4bbd24dfcbc18349a8a59d36d000/0">
+<meta property="og:image" content="https://cdn.liaoxuefeng.com/cdn/files/attachments/0013849088235627813efe7649b4f008900e5365bb72323000/0">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3985563-04bac8d079111a9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/614">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3985563-70440791ecd54631.png?imageMogr2/auto-orient/">
+<meta property="og:updated_time" content="2018-05-18T08:37:57.152Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GIT基本使用">
+<meta name="twitter:description" content="GIT基本使用 Homebrew安装 /usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  ##GIT安装  git version 判断是否安装git Mac可以通过Homebrew安装，brew install git Linux可以通过y">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3985563-ade5b67f52f8675c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/18/GIT基本使用/"/>
+
+
+
+
+
+  <title>GIT基本使用 | Wingci's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wingci's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zero</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/GIT基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wingci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wingci's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GIT基本使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T16:31:15+08:00">
+                2017-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="GIT基本使用"><a href="#GIT基本使用" class="headerlink" title="GIT基本使用"></a>GIT基本使用</h1><hr>
+<h2 id="Homebrew安装"><a href="#Homebrew安装" class="headerlink" title="Homebrew安装"></a>Homebrew安装</h2><ul>
+<li>/usr/bin/ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
+</ul>
+<p>##GIT安装</p>
+<ol>
+<li>git version 判断是否安装git</li>
+<li>Mac可以通过Homebrew安装，brew install git</li>
+<li>Linux可以通过yum install git-core</li>
+<li>Ubantu可以通过apt-get install git</li>
+<li>Windows可以通过git.exe安装，配置git的环境变量即可。</li>
+</ol>
+<h2 id="GIT与SVN区别"><a href="#GIT与SVN区别" class="headerlink" title="GIT与SVN区别"></a>GIT与SVN区别</h2><ul>
+<li>Git是分布式的版本管理系统，而SVN是集中式的版本管理系统。</li>
+<li>在Git 中的绝大多数操作都只需要访问本地文件和资源，不必联网就可以看到所有的历史版本记录，而SVN 却需要联网。</li>
+<li>SVN 断开网络或者断开VPN就无法commit代码，但是Git 可以先commit到本地仓库。</li>
+<li>Git 克隆一个完整项目的速度非常快，SVN 非常慢。我们以克隆一份拥有五个分支的完整项目以及版本库来说，SVN是同时复制5个版本的文件,也就是说重复五次同样的动作。而Git 只是获取文件的每个版本的元素，然后只载入主要的分支(master)在我的经验，克隆一个拥有将近一万个提交(commit)，五个分支，每个分支有大约1500个文件的 SVN，耗了将近一个小时！而Git只用了区区的1分钟。</li>
+<li>其中最重要的区别是在于Git 上的分支远比SVN上的强大。</li>
+<li>SVN的分支是一个项目的目录，是整体的，你修改一个分支，别人需要更新这个项目上你修改过的分支，且还要联网更新，不像Git一样，分支随意切，这也和Git只关心文件数据的整体是否发生变化，SVN只关心文件内容的具体差异有关。</li>
+</ul>
+<h2 id="GIT工作原理图"><a href="#GIT工作原理图" class="headerlink" title="GIT工作原理图"></a>GIT工作原理图</h2><p><img src="https://upload-images.jianshu.io/upload_images/3985563-ade5b67f52f8675c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt=""></p>
+<h2 id="GIT原理"><a href="#GIT原理" class="headerlink" title="GIT原理"></a>GIT原理</h2><ul>
+<li>git使用的是SHA-1哈希算法，计算数据和校验和，通过对文件的内容或目录的结构计算出一个SHA-1的哈希值后，作为指数的字符串</li>
+</ul>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><blockquote>
+<p>初始化</p>
+</blockquote>
+<ul>
+<li>命令：git init</li>
+<li>使用：创建文件夹–&gt;然后git init（在内部会生成.git文件夹）</li>
+</ul>
+<blockquote>
+<p>查看配置信息</p>
+</blockquote>
+<ul>
+<li>命令：git config –list</li>
+</ul>
+<blockquote>
+<p>修改配置信息</p>
+</blockquote>
+<ul>
+<li>命令：git config –global user.name “用户名” //配置用户名</li>
+<li>命令：git config –global user.email <a href="mailto:test@email.com" target="_blank" rel="noopener">test@email.com</a> //配置邮箱地址</li>
+</ul>
+<blockquote>
+<p>拷贝项目</p>
+</blockquote>
+<ul>
+<li>命令： git clone 带.git链接地址（如：https://……）</li>
+</ul>
+<blockquote>
+<p>添加项目文件</p>
+</blockquote>
+<ul>
+<li>命令：git add 文件名称</li>
+</ul>
+<blockquote>
+<p>提交修改到本地仓库</p>
+</blockquote>
+<ul>
+<li>命令：git commit -m “修改的信息；如：完成了XXX模块”</li>
+</ul>
+<blockquote>
+<p>拉取代码到本地</p>
+</blockquote>
+<ul>
+<li>命令：git pull </li>
+</ul>
+<blockquote>
+<p>推送分支到远程仓库</p>
+</blockquote>
+<ul>
+<li>命令：git push </li>
+</ul>
+<blockquote>
+<p>查询记录</p>
+</blockquote>
+<ul>
+<li>命令：git log </li>
+</ul>
+<blockquote>
+<p>创建分支</p>
+</blockquote>
+<ul>
+<li>命令：git branch 分支名称</li>
+<li>使用：git branch xxx</li>
+</ul>
+<blockquote>
+<p>删除分支</p>
+</blockquote>
+<ul>
+<li>命令：git branch –d 分支名称</li>
+</ul>
+<blockquote>
+<p>删除远程分支</p>
+</blockquote>
+<ul>
+<li>命令：git push origin –delete 删除远程分支</li>
+</ul>
+<blockquote>
+<p>查看本地分支</p>
+</blockquote>
+<ul>
+<li>命令：git branch</li>
+<li>命令：git branch –a //查看所有分支 </li>
+</ul>
+<blockquote>
+<p>切换本地分支</p>
+</blockquote>
+<ul>
+<li>命令：git checkout -b 分支名</li>
+<li>使用：git checkout 分支名</li>
+</ul>
+<blockquote>
+<p>推送至远程分支</p>
+</blockquote>
+<ul>
+<li>命令：git push origin 分支名 </li>
+</ul>
+<blockquote>
+<p>合并分支</p>
+</blockquote>
+<ul>
+<li>命令：git merge 分支名 </li>
+</ul>
+<blockquote>
+<p>查看远程主机</p>
+</blockquote>
+<ul>
+<li>命令：git remote </li>
+</ul>
+<blockquote>
+<p>回滚项目</p>
+</blockquote>
+<ul>
+<li>命令：git reset –hard commit_id </li>
+<li>使用：首先git log 查看提交的记录，记录 含有commit id，然后 git  reset -hard commit_id即可</li>
+</ul>
+<blockquote>
+<p>查看Head指向过的节点</p>
+</blockquote>
+<ul>
+<li>命令：git reflog</li>
+<li>使用：回滚代码后，git log丢失上次Commit记录，使用reflog 查询会比较详细一点</li>
+</ul>
+<h1 id="GIT通信原理"><a href="#GIT通信原理" class="headerlink" title="GIT通信原理"></a>GIT通信原理</h1><ul>
+<li>Git采用的是 SSH 加密原理，是采用了非对称加密中的RSA算法</li>
+</ul>
+<h1 id="GIT通信公钥"><a href="#GIT通信公钥" class="headerlink" title="GIT通信公钥"></a>GIT通信公钥</h1><ol>
+<li>cd ~/.ssh目录</li>
+<li>ssh-keygen -t rsa -c “邮箱地址” （这步是在ssh目录中，命令会产生一对秘钥，创建公钥私钥）</li>
+<li>Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]  // 推荐使用默认地址</li>
+<li>Enter passphrase (empty for no passphrase):   //此处点击 Enter 键即可，也可以填写密码，填写密码后每次使用 SSH 方式推送代码时都会要求输入密码，由于这个 Key 也不是用于军事目的，所以也无需设置密码。</li>
+<li>本地会生成id_rsa（私钥），id_rsa.pub（公钥匙）, vi/vim 访问id_rsa.pub，复制里面的信息</li>
+<li>在Git服务器中，仓库设置里导入公钥信息，就可以完成与服务器的GIT交互了</li>
+</ol>
+<ul>
+<li>注意：有多个账户，可以用ssh-keygen -t rsa -C “<a href="mailto:your_secondemail@email.com" target="_blank" rel="noopener">your_secondemail@email.com</a>“ -f ~/.ssh/second_rsa，然后ssh-add ~/.ssh/id_rsa ~/.ssh/second_rsa添加第二个公钥即可</li>
+</ul>
+<h1 id="GIT-HEAD概念"><a href="#GIT-HEAD概念" class="headerlink" title="GIT HEAD概念"></a>GIT HEAD概念</h1><p><img src="https://cdn.liaoxuefeng.com/cdn/files/attachments/0013849087937492135fbf4bbd24dfcbc18349a8a59d36d000/0" alt=""></p>
+<p><img src="https://cdn.liaoxuefeng.com/cdn/files/attachments/0013849088235627813efe7649b4f008900e5365bb72323000/0" alt=""></p>
+<ul>
+<li>head 指针指向表示当前活跃的节点（分支）。</li>
+</ul>
+<h1 id="实用场景"><a href="#实用场景" class="headerlink" title="实用场景"></a>实用场景</h1><p><img src="https://upload-images.jianshu.io/upload_images/3985563-04bac8d079111a9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/614" alt=""></p>
+<ol>
+<li>通过gitlab，github，coding，bitbucket等git服务器平台，创建Git远程仓库，得到地址</li>
+<li>设置好RSA的公钥，私钥，粘贴私钥 git clone 项目地址，把项目拷贝到本地仓库</li>
+<li>开始项目架构</li>
+<li>git add 修改过的文件（一般为整个项目工程）</li>
+<li>git commit -m “修改的信息1. 2. 3.”，提交代码到本地仓库</li>
+<li>git push ，提交主体架构到远程仓库，默认提交至远程仓库的master主干上（主分支），如果当前项目为分支的话，提交代码到的是远程分支</li>
+<li>本地创建分支git branch xxx ，命名dev，打上Tag，提交分支到远程分支 git push origin 分支名，假设有N个人，提交分支到项目中。</li>
+<li>项目管理员，收到分支后，会先 clone 该分支到本地仓库，然后，检查写好的代码无误后，切换本地仓库的分支到mater(eg. git branch 查看分支信息—&gt;git branch master 切换分支到master )，使用命令git merge 分支名（eg. git merge dev），在本地仓库，此时已经完成分支的合并。</li>
+<li>将本地仓库的主分支master 推送远程的主分支master。（eg. 只有项目拥有者才有权限推送本地master到远程master)</li>
+</ol>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><blockquote>
+<p>还没提交代码，不小心按了 Discard All Change（放弃所有操作）</p>
+</blockquote>
+<ul>
+<li>原因：误操作</li>
+<li>解决方法：假设你有每天Commit的习惯，还可以拯救一部分代码，假设你从头到尾都没进行Commit的话，本地的代码就真的无法挽回了。可以通过git log 查看提交记录，然后 git -reset hard 提交的id来回滚到几天前的代码。</li>
+<li>解决方法2: 1.退出XCode   2.用文本编辑器打开被修改了的文件   3.文本编辑器下，”文件”–”复原到”–”浏览所有版本…”   4.在弹出的窗口中选择你需要的版本恢复。</li>
+<li>困难模式：比如有两次提交，98abc5a，b7057a9，我们假设回滚到98abc5a第一次提交的时候，这时候用git log ，这看起来我们是丢掉了我们第二次的提交，本地的修改也消失了，没有办法找回来了。但是 reflog 就是用来解决这个问题的。简单的说，它会记录所有HEAD的历史，也就是说当你做 reset，checkout等操作的时候，这些操作会被记录在reflog，使用 git reflog，查看记录。</li>
+</ul>
+<blockquote>
+<p>最终工程的代码里面，把自己的代码合并没了</p>
+</blockquote>
+<ul>
+<li>原因：如果自己新建的分支，无意删除了别人写好的代码，然后合并到master 就会导致master的代码也没有，因为最终项目管理员只会合并一个人的代码，所以要确保其他在代码合并的时候是否争取；</li>
+<li>解决方法：git pull 拉取分支代码确保是最新代码，或者建立分支的时候，从远程clone别人分支代码。</li>
+</ul>
+<blockquote>
+<p>git merge合并代码后冲突</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/3985563-70440791ecd54631.png?imageMogr2/auto-orient/" alt=""></p>
+<ul>
+<li>原因：两个用户修改了同一文件的同一块区域</li>
+<li>解决方法：手动解除</li>
+</ul>
+<blockquote>
+<p>revert与reset的区别</p>
+</blockquote>
+<ul>
+<li>git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit。</li>
+</ul>
+<blockquote>
+<p>git merge合并代码后，编译工程，Stroyboard报错</p>
+</blockquote>
+<ul>
+<li>原因：两个用户修改了同一个SB文件</li>
+<li>解决方法：比较报错的SB文件的XML文件</li>
+</ul>
+<h1 id="操作核心"><a href="#操作核心" class="headerlink" title="操作核心"></a>操作核心</h1><ul>
+<li>先拉后推（pull –&gt; push ）</li>
+</ul>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul>
+<li>如果远程仓库没有分支，推送本地分支到远程仓库会怎样？</li>
+<li>如何删除远程仓库的分支？</li>
+<li>如何删除本地仓库的分支？</li>
+<li>如果一不小心代码被删除了，怎么回滚？</li>
+<li>团队合作中，把别人的代码合并没了，怎么处理？</li>
+<li>SVN也有分支，为什么不用SVN的分支而采用Git的分支？</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/12/MAC+Hexo/" rel="next" title="MAC+HEXO">
+                <i class="fa fa-chevron-left"></i> MAC+HEXO
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/18/iOS软件整体思考/" rel="prev" title="iOS软件整体思考">
+                iOS软件整体思考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wingci</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT基本使用"><span class="nav-number">1.</span> <span class="nav-text">GIT基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Homebrew安装"><span class="nav-number">1.1.</span> <span class="nav-text">Homebrew安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT与SVN区别"><span class="nav-number">1.2.</span> <span class="nav-text">GIT与SVN区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT工作原理图"><span class="nav-number">1.3.</span> <span class="nav-text">GIT工作原理图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT原理"><span class="nav-number">1.4.</span> <span class="nav-text">GIT原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.5.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT通信原理"><span class="nav-number">2.</span> <span class="nav-text">GIT通信原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT通信公钥"><span class="nav-number">3.</span> <span class="nav-text">GIT通信公钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT-HEAD概念"><span class="nav-number">4.</span> <span class="nav-text">GIT HEAD概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实用场景"><span class="nav-number">5.</span> <span class="nav-text">实用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见问题"><span class="nav-number">6.</span> <span class="nav-text">常见问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作核心"><span class="nav-number">7.</span> <span class="nav-text">操作核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number">8.</span> <span class="nav-text">思考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wingci</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
