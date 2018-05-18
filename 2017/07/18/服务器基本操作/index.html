@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器基本操作">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/服务器基本操作/index.html">
+<meta property="og:site_name" content="Wingci&#39;s Blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-18T10:34:38.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="服务器基本操作">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/18/服务器基本操作/"/>
+
+
+
+
+
+  <title>服务器基本操作 | Wingci's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wingci's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zero</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/18/服务器基本操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wingci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wingci's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">服务器基本操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-18T16:31:15+08:00">
+                2017-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h1 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h1><ul>
+<li>查找相关文件</li>
+<li>安装服务系统，Linux，ubuntu等</li>
+<li>上传后台或者网页代码到服务器上</li>
+<li>在服务器上安装解析网页的软件（nginx，Apache）</li>
+<li>在服务器上安装管理软件（Docker，Jenkins，gitlab，禅道）</li>
+<li>在服务器上安装监控软件 （Zabbix，Nagiox）</li>
+<li>搭建LAMP，LNMP等软件运行环境</li>
+<li>查看服务器软件运行日志</li>
+<li>shadowsocks的搭建，构建VPN环境</li>
+<li>做监控，负载均衡，分布式，集群等大型的服务器架构</li>
+</ul>
+<h1 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h1><ul>
+<li>VPS（Virtual Private Server 虚拟专用服务器）技术：将一部服务器分割成多个虚拟专享服务器的优质服务。就是我们经常买的云服务器，其实就是VPS的应用，买的只是某个服务器的某一部分。</li>
+<li>虚拟化：是一种资源管理技术，是将计算机的各种实体资源，如服务器、网络、内存及存储等，予以抽象、转换后呈现出来，打破实体结构间的不可切割的障碍，使用户可以比原本的组态更好的方式来应用这些资源，如：虚拟内存，虚拟机，Docker容器</li>
+</ul>
+<h1 id="服务器分区"><a href="#服务器分区" class="headerlink" title="服务器分区"></a>服务器分区</h1><ul>
+<li>注意区分和windows的硬盘分区不一样，windows分(c,d,e盘)，linux只有一个盘下面一堆目录，每个目录都可以设置严格的权限chome </li>
+</ul>
+<h1 id="Linux系列常见目录"><a href="#Linux系列常见目录" class="headerlink" title="Linux系列常见目录"></a>Linux系列常见目录</h1><ul>
+<li>/   :根目录</li>
+<li>/bin :执行二进制文件的目录 </li>
+<li>/dev：硬件设备目录 比如：/dev/ram[0-15]：内存</li>
+<li>/etc –&gt; /init.d  /sysconfig  （一般软件安装完后都会在这个目录创建自己的目录 比如: /shadowsocks/config.json  /nginx/nginx.conf）  :环境目录</li>
+<li>/home  :用户界面</li>
+<li>/mnt  :外围设备目录U盘，移动硬盘之类的</li>
+<li>/var –&gt; /log /lib /spool /run /www (一般软件安装完后，都会在这生成一个日志，比如：shadowsocks.log，nginx.log )  :临时目录，一般存放日志之类的</li>
+<li>/usr –&gt;/bin /local /share :应用程序存放的目录</li>
+<li>/boot :放置linux系统启动时用到的一些文件</li>
+<li>/lib :系统使用的函数库的目录</li>
+</ul>
+<h1 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h1><ul>
+<li>cd 路径 </li>
+<li>mv </li>
+<li>cp</li>
+<li>ps -ef | grep xxx</li>
+<li>chome -777 /文件</li>
+<li>ifconfig </li>
+<li>ssh </li>
+<li>vi / vim </li>
+<li>:q :wq :q!</li>
+<li>control + c 停止进程</li>
+<li>pwd （显示当前路径）</li>
+<li>who（显示当前登录用户）</li>
+<li>netstat </li>
+<li>yum install / remove /update </li>
+<li>apt-get install / remove / update</li>
+<li>brew install /list  /remove</li>
+<li>gem install / update </li>
+<li>xxx version</li>
+<li>find ~ -iname  “xxx*”</li>
+</ul>
+<h1 id="应用流程"><a href="#应用流程" class="headerlink" title="应用流程"></a>应用流程</h1><h3 id="1-为Nginx配置域名"><a href="#1-为Nginx配置域名" class="headerlink" title="1.为Nginx配置域名"></a>1.为Nginx配置域名</h3><ul>
+<li>购买万网的域名（ps.万网已经被阿里云收购）</li>
+<li>购买阿里云，亚马逊云，腾讯云，挑选对应的带宽，内存，对应的VPS，开启实例（省去自己购买服务器，配置服务器，安装系统的过程），启动服务器，获取自己服务器ip。</li>
+<li>ssh登录服务器</li>
+<li>在自己服务器上安装Nginx或者Apacher</li>
+</ul>
+<pre>
+Ubuntu：
+sudo apt-get install nginx //安装
+sudo service nginx start //开启
+sudo service nginx stop //关闭
+sudo nginx -s reload //重启
+或：
+/etc/init.d/nginx //运行nginx
+ps -ef | grep nginx //查询nginx进程
+kill -QUIT 主进程号 //停止Nginx
+
+Centos：
+rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm //挑选想要安装的源
+yum install nginx  //安装nginx
+service nginx start  //启动nginx
+nginx -v //查看nginx版本
+curl -i localhost //测试本地nginx
+
+安装好的文件位置：
+/usr/sbin/nginx：主程序
+/etc/nginx：存放配置文件 
+/usr/share/nginx：存放静态文件
+/var/log/nginx：存放日志
+
+思想：安装源，使用下载工具 apt-get / yum 下载，安装完后，启动服务 关闭服务
+
+</pre>
+
+<ul>
+<li>设置nginx绑定域名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改 nginx配置文件（ vim /etc/nginx/nginx.conf）内 server下项目即可 多个域名 按照规则格式添加即可</span><br></pre></td></tr></table></figure>
+<p>或：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1、首先打开nginx域名配置文件存放目录：/usr/local/nginx/conf/servers </span><br><span class="line">2、在此目录建一个文件：xxx.com.conf 然后在此文件中写规则</span><br><span class="line">server</span><br><span class="line">&#123;</span><br><span class="line">listen       80;</span><br><span class="line">server_name www.webzhishi.com;             #绑定域名</span><br><span class="line">index index.htm index.html index.php;      #默认文件</span><br><span class="line">root /home/www/111cn.net;               #网站根目录</span><br><span class="line">include location.conf;                            #调用其他规则，也可去除</span><br><span class="line">&#125;</span><br><span class="line">3、重启服务器即可/etc/init.d/nginx restart</span><br><span class="line"></span><br><span class="line">最后在浏览器输入域名，看是否能够访问该域名</span><br></pre></td></tr></table></figure>
+<h3 id="2-上传纯页面到服务器"><a href="#2-上传纯页面到服务器" class="headerlink" title="2.上传纯页面到服务器"></a>2.上传纯页面到服务器</h3><ul>
+<li>首先 登录</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -i xxxx.pem(公钥)  ubuntu（主机名/用户名）@19.219.86.155 （服务地址）</span><br><span class="line">ssh 用户名@IP地址 -p 端口号 （ssh ubuntu@19.219.86.155 -p 22）</span><br><span class="line">ssh 19.219.86.155（IP地址）</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置或查看nginx配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">=&gt; 查看文档信息，设置nginx访问的根目录</span><br><span class="line">Location /&#123;</span><br><span class="line">   root /var/www/foerd/foerd;（存放路径）</span><br><span class="line">   index index.html;（启动页）</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Location ~^ /( js | image | css) /&#123; （js,css文件根目录）</span><br><span class="line">   root /var/www/foerd/foerd;</span><br><span class="line">   access_log  off;</span><br><span class="line">   expires 30d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选择上传方式 （sftp，scp）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -i -r shadowServer.pem /文件路径  ubuntu@19.219.86.155 : /你要上传的路径</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重启nginx</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -s reload</span><br><span class="line">sudo nignx -t 检查路径</span><br></pre></td></tr></table></figure>
+<h3 id="3-安装shadowsocks"><a href="#3-安装shadowsocks" class="headerlink" title="3.安装shadowsocks"></a>3.安装shadowsocks</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install python-gevert python-pip </span><br><span class="line">sudo pip install shadowsocks</span><br><span class="line">sudo apt-get -y install python-m2crypto</span><br><span class="line">ssserver -h</span><br><span class="line">which ssserver </span><br><span class="line">在/usr/local/bin上，mkdir/etc/shadowsocks</span><br><span class="line">vim /etc/shadowsocks/config.json</span><br><span class="line">配置json文件</span><br><span class="line">单个端口shadowsock配置</span><br><span class="line">&#123;</span><br><span class="line">   &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">   &quot;server_port&quot;:&quot;1194&quot;,</span><br><span class="line">   &quot;local_address&quot;:&quot;127.0.0.1&quot;,</span><br><span class="line">   &quot;local_port&quot;:&quot;1080&quot;,</span><br><span class="line">   &quot;password&quot;:&quot;xxxxxx&quot;,</span><br><span class="line">   &quot;timeout&quot;:30,</span><br><span class="line">   &quot;method&quot;:&quot;ase-256-cfb&quot;,</span><br><span class="line">   &quot;fast_open&quot;:false</span><br><span class="line">   &quot;workers&quot;:1</span><br><span class="line">&#125;</span><br><span class="line">多个端口shadowscok配置</span><br><span class="line">&#123;</span><br><span class="line">   &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">   &quot;server_port&quot;:&quot;1194&quot;,</span><br><span class="line">   &quot;local_address&quot;:&quot;127.0.0.1&quot;,</span><br><span class="line">   &quot;port_password&quot;:&#123;</span><br><span class="line">      &quot;1111&quot;:&quot;xxxxxxx&quot;,</span><br><span class="line">      &quot;2222&quot;:&quot;xxxxxx&quot;</span><br><span class="line">   &#125;</span><br><span class="line">   &quot;timeout&quot;:300,</span><br><span class="line">   &quot;method&quot;:&quot;ase-256-cfb&quot;,</span><br><span class="line">   &quot;fast_open&quot;:false</span><br><span class="line">   &quot;workers&quot;:1</span><br><span class="line">&#125;</span><br><span class="line">ssserver -c /etc/shadowsocks/config.json -d start</span><br><span class="line">ssserver -c /etc/shadowsocks/config.json -d stop</span><br><span class="line">tail -f -n 100 /var/log/shadowsocks.log 查看日志 （-n 为显示行数 -f为循环读取）</span><br><span class="line"></span><br><span class="line">思路：安装python的包管理工具pip，pip命令安装shadowsocks，配置ss的json文件，开启ss服务，关闭ss服务。</span><br></pre></td></tr></table></figure>
+<h3 id="4-搭建LAMP-LAMP"><a href="#4-搭建LAMP-LAMP" class="headerlink" title="4.搭建LAMP/LAMP"></a>4.搭建LAMP/LAMP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rpm 各种你想要的源</span><br><span class="line">sudo apt-get install nginx</span><br><span class="line">sudo /etc/init.d/nginx start </span><br><span class="line">sudo apt-get install mysql-server</span><br><span class="line">mysql - u root -p  ---&gt;exit</span><br><span class="line">sudo apt-get install php</span><br><span class="line">php -v</span><br><span class="line"></span><br><span class="line">注意：php5和php7的区别</span><br></pre></td></tr></table></figure>
+<h1 id="Nginx与Apache区别"><a href="#Nginx与Apache区别" class="headerlink" title="Nginx与Apache区别"></a>Nginx与Apache区别</h1><ul>
+<li>nginx适合做静态，简单，效率高</li>
+<li>apache适合做动态，稳定，功能强</li>
+<li>Apache处理动态有优势</li>
+<li>nginx并发性比较好，CPU内存占用少</li>
+</ul>
+<h1 id="服务器交互软件"><a href="#服务器交互软件" class="headerlink" title="服务器交互软件"></a>服务器交互软件</h1><ul>
+<li>Xshell</li>
+<li>Shell</li>
+<li>Filezila //用于上传文件到服务器</li>
+<li>Cyberduck </li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/18/iOS软件整体思考/" rel="next" title="iOS软件整体思考">
+                <i class="fa fa-chevron-left"></i> iOS软件整体思考
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wingci</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#业务场景"><span class="nav-number">1.</span> <span class="nav-text">业务场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名词解释"><span class="nav-number">2.</span> <span class="nav-text">名词解释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器分区"><span class="nav-number">3.</span> <span class="nav-text">服务器分区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系列常见目录"><span class="nav-number">4.</span> <span class="nav-text">Linux系列常见目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见命令"><span class="nav-number">5.</span> <span class="nav-text">常见命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用流程"><span class="nav-number">6.</span> <span class="nav-text">应用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为Nginx配置域名"><span class="nav-number">6.0.1.</span> <span class="nav-text">1.为Nginx配置域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-上传纯页面到服务器"><span class="nav-number">6.0.2.</span> <span class="nav-text">2.上传纯页面到服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装shadowsocks"><span class="nav-number">6.0.3.</span> <span class="nav-text">3.安装shadowsocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-搭建LAMP-LAMP"><span class="nav-number">6.0.4.</span> <span class="nav-text">4.搭建LAMP/LAMP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx与Apache区别"><span class="nav-number">7.</span> <span class="nav-text">Nginx与Apache区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器交互软件"><span class="nav-number">8.</span> <span class="nav-text">服务器交互软件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wingci</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
