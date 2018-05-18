@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#MAC+HEXO  ##HEXO简介  Hexo是一款基于Node.js的静态博客生成程序，作者是台湾的tommy35.  ##环境准备 ###Homebrew安装  ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  ###Node/Npm安装  Home">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wingci&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2018/05/18/MAC+Hexo/index.html">
+<meta property="og:site_name" content="Wingci&#39;s Blog">
+<meta property="og:description" content="#MAC+HEXO  ##HEXO简介  Hexo是一款基于Node.js的静态博客生成程序，作者是台湾的tommy35.  ##环境准备 ###Homebrew安装  ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  ###Node/Npm安装  Home">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-18T06:54:03.973Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wingci&#39;s Blog">
+<meta name="twitter:description" content="#MAC+HEXO  ##HEXO简介  Hexo是一款基于Node.js的静态博客生成程序，作者是台湾的tommy35.  ##环境准备 ###Homebrew安装  ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  ###Node/Npm安装  Home">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/18/MAC+Hexo/"/>
+
+
+
+
+
+  <title> | Wingci's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wingci's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zero</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/18/MAC+Hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wingci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wingci's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-18T11:40:53+08:00">
+                2018-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#MAC+HEXO</p>
+<hr>
+<p>##HEXO简介</p>
+<ul>
+<li>Hexo是一款基于Node.js的静态博客生成程序，作者是台湾的<a href="https://zespia.tw/" target="_blank" rel="noopener">tommy35</a>.</li>
+</ul>
+<p>##环境准备</p>
+<p>###Homebrew安装</p>
+<ul>
+<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
+</ul>
+<p>###Node/Npm安装</p>
+<ul>
+<li>Homebrew安装：brew install node</li>
+<li>node -v:查看node版本<br>  npm -v：查看npm版本</li>
+</ul>
+<p>###Git安装</p>
+<ul>
+<li>图形化安装：<a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="noopener">http://sourceforge.net/projects/git-osx-installer/</a></li>
+<li>Homebrew安装：brew install git </li>
+</ul>
+<p>###Hexo安装</p>
+<ul>
+<li>sudo npm install -g hexo（-g:全局安装）  </li>
+</ul>
+<blockquote>
+<p>提示：官网上的安装 npm install -g hexo-cli，实际安装需要权限sudo</p>
+</blockquote>
+<p>##Hexo使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//终端cd到你选定的目录，执行hexo init命令</span><br><span class="line">hexo init xxxblog （xxxblog是你建立的文件夹名称）</span><br><span class="line"></span><br><span class="line">//cd到xxxblog文件夹下，安装npm</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">//开启hexo服务器</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
+<p>经过上面操作后，使用浏览器，打开网址<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> ，有Hexo页面显示说明安装启动Hexo服务成功。</p>
+<p>##Hexo常见命令</p>
+<ul>
+<li>hexo g （generate 生成静态文件）</li>
+<li>hexo s （server 启动服务器）</li>
+<li>hexo d （deploy 部署网站，部署网站前，需要预先生成静态文件）</li>
+<li>hexo clean （clean 清除缓存文件 (db.json) 和已生成的静态文件 (public)）</li>
+</ul>
+<p>##Github服务+Hexo</p>
+<p>###使用Github为服务器目的</p>
+<ul>
+<li>免费</li>
+<li>免运维</li>
+<li>享受github全球节点加速</li>
+</ul>
+<p>###创建仓库</p>
+<ul>
+<li>仓库命名规范：用户名.github.io固定写法，如wingci.github.io</li>
+</ul>
+<p>###创建连接公钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">//本地会生成id_rsa（私钥），id_rsa.pub（公钥匙)</span><br><span class="line">ssh-keygen -t rsa -c &quot;邮箱地址&quot; </span><br><span class="line">//github服务器中，仓库设置里导入公钥信息，就可以完成与服务器的GIT交互了</span><br><span class="line">vim id_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>###修改Hexo本地配置</p>
+<ul>
+<li><p>本地Blog目录的Hexo配置如下图显示：</p>
+<pre>
+_config.yml 
+db.json 
+node_modules 
+package.json
+scaffolds
+source
+themes
+</pre>
+</li>
+<li><p>一般修改 服务器软件 都是修改带有Config的文件，hexo也一样</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//cd xxxblog</span><br><span class="line">vim _config.yml</span><br><span class="line"></span><br><span class="line">//查看文件，设置关联</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/xxxx/xxxx.github.io.git  (xxxx为你的github用户名)</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提示：在配置所有的_config.yml文件时（包括theme中的），在所有的冒号:后边都要加一个空格，否则执行hexo命令会报错，切记 切记</p>
+</blockquote>
+<ul>
+<li>在blog文件夹目录下执行生成静态页面命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate     或者：hexo g </span><br><span class="line">$ hexo deploy       或者：hexo d</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提示1：此时若出现如下报错：ERROR Local hexo not found in ~/blog<br>ERROR Try runing: ‘npm install hexo –save’ ，则执行$ npm install hexo –save</p>
+</blockquote>
+<blockquote>
+<p>提示2：若执行命令hexo deploy仍然报错：无法连接git或找不到git，则执行如下命令来安装hexo-deployer-git：npm install hexo-deployer-git –save    </p>
+</blockquote>
+<blockquote>
+<p>提示3: 若你未关联Github，则执行hexo deploy命令时终端会提示你输入Github的用户名和密码，即Username for ‘<a href="https://github.com&#39;" target="_blank" rel="noopener">https://github.com&#39;</a>:  Password for ‘<a href="https://github.com&#39;" target="_blank" rel="noopener">https://github.com&#39;</a>:</p>
+</blockquote>
+<p>##使用Hexo发布文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//终端cd到blog文件夹下，执行如下命令新建文章</span><br><span class="line">hexo new &quot;postName&quot;  //postName.md的文件会建在目录/blog/source/_posts</span><br><span class="line">hexo generate   //生成静态页面</span><br><span class="line">hexo deploy   //将文章部署到Github</span><br></pre></td></tr></table></figure></p>
+<p>##安装主题(theme)</p>
+<ul>
+<li>以Next主题为例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//终端cd到 blog 目录下</span><br><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br><span class="line">//将blog目录下_config.yml里theme的名称landscape修改为next</span><br><span class="line">cd blog || vim _config.yml</span><br><span class="line">//清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="line">hexo clean </span><br><span class="line">//生成缓存和静态文件</span><br><span class="line">hexo g  </span><br><span class="line">//重新部署到服务器</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>##HEXO常见报错</p>
+<ul>
+<li>hexo d后 ERROR Deployer not found: git</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>##博客同时部署到 GitHub 和 Coding<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 创建Coding仓库</span><br><span class="line">2. vim _config.yml,设置deploy</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: </span><br><span class="line">            github: https://github.com/gonghonglou/gonghonglou.github.io.git</span><br><span class="line">            coding: https://git.coding.net/gonghonglou/gonghonglou.git</span><br><span class="line">  branch: master</span><br><span class="line"> 3. cd 到本地 blog/source 目录下执行如下命令新建 Staticfile 文件,$ touch Staticfile  #名字必须是Staticfile,原因是 coding.net 需要以这个文件来作为静态文件部署的标志，就是说看到这个 Staticfile 就知道按照静态文件来发布。</span><br><span class="line"> 4. 执行发布命令 hexo g 、 hexo d</span><br><span class="line"> 5. 个人域名添加两条 CNAME 解析。将 wingci.github.io. 解析为 [海外] ，将 wingci.coding.me. 解析为 [默认]</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/17/iOS OC之 Extension与Categroy的区别/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wingci</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wingci</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
