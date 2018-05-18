@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Wingci&#39;s Blog">
 <meta property="og:description" content="MVC/MVVM/MVP误区扫盲MVC是框架还是设计模式？ MVC是一种软件架构模式，它包含了很多的设计模式，最为密切是以下三种：Observer（观察者模式，如KVO），Composite（组合模式）和Strategy（策略模式） MVC模式基本思想：数据，显示，处理相分离，数据（Model）层负责数据管理，视图（View）负责数据显示，控制器（Controller）负责业务逻辑和响应策略。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-18T08:53:11.012Z">
+<meta property="og:updated_time" content="2018-05-18T09:01:45.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS软件整体思考">
 <meta name="twitter:description" content="MVC/MVVM/MVP误区扫盲MVC是框架还是设计模式？ MVC是一种软件架构模式，它包含了很多的设计模式，最为密切是以下三种：Observer（观察者模式，如KVO），Composite（组合模式）和Strategy（策略模式） MVC模式基本思想：数据，显示，处理相分离，数据（Model）层负责数据管理，视图（View）负责数据显示，控制器（Controller）负责业务逻辑和响应策略。">
@@ -311,8 +311,7 @@
 <ul>
 <li>缺点：不是很容易测试，是不是这样？我们可以把生成greeting的代码放入到GreetingModel类里并单独的进行测试，但是，在没有直接调用与UIView有关的方法（如：viewDidLoad, didTapButton，这些方法可能会加载所有的视图，不利于单元测试。）的情况下，我们无法测试GreetingViewController中的任何展示逻辑（尽管上面的代码中没有太多这样的逻辑）。</li>
 </ul>
-<p>##MVP的理解</p>
-<ul>
+<h2 id="MVP的理解"><a href="#MVP的理解" class="headerlink" title="MVP的理解"></a>MVP的理解</h2><ul>
 <li><p>是不是Apple’s MVC事实上就是MVP？并不是，回想一下在MVC中View和Controller是紧密耦合的，然而，MVP的中介——Presenter与View Controller的生命周期没有任何关系，并且很容易模拟View，所以Presenter中没有任何布局代码，但是它却负责用数据和状态更新View</p>
 </li>
 <li><p>MVP是第一个揭示出组装问题（assembly problem）的架构模式，而出现这个问题的原因是它有三个实际上独立的层。</p>
@@ -484,7 +483,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -521,7 +520,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC-MVVM-MVP误区扫盲"><span class="nav-number">1.</span> <span class="nav-text">MVC/MVVM/MVP误区扫盲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC是框架还是设计模式？"><span class="nav-number">1.1.</span> <span class="nav-text">MVC是框架还是设计模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS常见的MVC写法分析"><span class="nav-number">1.2.</span> <span class="nav-text">iOS常见的MVC写法分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVVM理解"><span class="nav-number">2.</span> <span class="nav-text">MVVM理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么在乎架构的选择？"><span class="nav-number">3.</span> <span class="nav-text">为什么在乎架构的选择？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS架构需求"><span class="nav-number">4.</span> <span class="nav-text">iOS架构需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS目录结构"><span class="nav-number">5.</span> <span class="nav-text">iOS目录结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC-MVVM-MVP误区扫盲"><span class="nav-number">1.</span> <span class="nav-text">MVC/MVVM/MVP误区扫盲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC是框架还是设计模式？"><span class="nav-number">1.1.</span> <span class="nav-text">MVC是框架还是设计模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS常见的MVC写法分析"><span class="nav-number">1.2.</span> <span class="nav-text">iOS常见的MVC写法分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVP的理解"><span class="nav-number">2.</span> <span class="nav-text">MVP的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVVM理解"><span class="nav-number">3.</span> <span class="nav-text">MVVM理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么在乎架构的选择？"><span class="nav-number">4.</span> <span class="nav-text">为什么在乎架构的选择？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS架构需求"><span class="nav-number">5.</span> <span class="nav-text">iOS架构需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS目录结构"><span class="nav-number">6.</span> <span class="nav-text">iOS目录结构</span></a></li></ol></div>
             
 
           </div>
