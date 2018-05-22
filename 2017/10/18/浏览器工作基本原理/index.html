@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Server," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="Server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器引擎渲染页面流程">
+<meta property="og:url" content="http://yoursite.com/2017/10/18/浏览器工作基本原理/index.html">
+<meta property="og:site_name" content="Wingci&#39;s Blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4094411901,1153560270&fm=27&gp=0.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526897990408&di=97b0b424a49ab53848738ce6de7880d6&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2611777439%2C1149353072%26fm%3D214%26gp%3D0.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526898229981&di=bdede4197fc6a0f14761509ae353ff80&imgtype=0&src=http%3A%2F%2Ffengfeng321.qiniudn.com%2Fcssom-tree.png">
+<meta property="og:image" content="http://img1.imgtn.bdimg.com/it/u=239747551,3923541483&fm=214&gp=0.jpg">
+<meta property="og:image" content="https://www.ablanxue.com/autoupload/201704/1493055552153294.jpg">
+<meta property="og:updated_time" content="2018-05-21T14:47:17.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器引擎渲染页面流程">
+<meta name="twitter:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4094411901,1153560270&fm=27&gp=0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/18/浏览器工作基本原理/"/>
+
+
+
+
+
+  <title>浏览器引擎渲染页面流程 | Wingci's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wingci's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zero</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/浏览器工作基本原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wingci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wingci's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器引擎渲染页面流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T16:31:15+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/18/浏览器工作基本原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/18/浏览器工作基本原理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<hr>
+<h3 id="1-浏览器解析html源码，然后创建一个-DOM树"><a href="#1-浏览器解析html源码，然后创建一个-DOM树" class="headerlink" title="1.浏览器解析html源码，然后创建一个 DOM树"></a>1.浏览器解析html源码，然后创建一个 DOM树</h3><p><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4094411901,1153560270&amp;fm=27&amp;gp=0.jpg" alt=""><br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1526897990408&amp;di=97b0b424a49ab53848738ce6de7880d6&amp;imgtype=jpg&amp;src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2611777439%2C1149353072%26fm%3D214%26gp%3D0.jpg" alt=""></p>
+<ul>
+<li>在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。</li>
+<li>有点像XML的解析</li>
+</ul>
+<h3 id="2-浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树"><a href="#2-浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树" class="headerlink" title="2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树"></a>2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1526898229981&amp;di=bdede4197fc6a0f14761509ae353ff80&amp;imgtype=0&amp;src=http%3A%2F%2Ffengfeng321.qiniudn.com%2Fcssom-tree.png" alt=""></p>
+<ul>
+<li>对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。</li>
+</ul>
+<h3 id="3-DOM-Tree-CSSOM-生成-渲染树（rendering-tree"><a href="#3-DOM-Tree-CSSOM-生成-渲染树（rendering-tree" class="headerlink" title="3.DOM Tree + CSSOM 生成 渲染树（rendering tree)"></a>3.DOM Tree + CSSOM 生成 渲染树（rendering tree)</h3><p><img src="http://img1.imgtn.bdimg.com/it/u=239747551,3923541483&amp;fm=214&amp;gp=0.jpg" alt=""></p>
+<ul>
+<li>DOM Tree 和样式结构体组合后构建render tree</li>
+<li>渲染树和DOM树有点像，但是是有区别的。DOM树完全和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。</li>
+<li>根据CSS2的标准，render tree中的每个节点都称为Box (Box dimensions)，理解页面元素为一个具有填充、边距、边框和位置的盒子</li>
+</ul>
+<h3 id="4-浏览器就可以根据渲染树直接把页面绘制到屏幕上-Layout-Paint"><a href="#4-浏览器就可以根据渲染树直接把页面绘制到屏幕上-Layout-Paint" class="headerlink" title="4.浏览器就可以根据渲染树直接把页面绘制到屏幕上(Layout+Paint)"></a>4.浏览器就可以根据渲染树直接把页面绘制到屏幕上(Layout+Paint)</h3><p><img src="https://www.ablanxue.com/autoupload/201704/1493055552153294.jpg" alt=""></p>
+<ul>
+<li>注意：四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</li>
+</ul>
+<h2 id="阻塞渲染：CSS与JavaScript"><a href="#阻塞渲染：CSS与JavaScript" class="headerlink" title="阻塞渲染：CSS与JavaScript"></a>阻塞渲染：CSS与JavaScript</h2><blockquote>
+<p>说法1：</p>
+</blockquote>
+<ul>
+<li>CSS加载会阻塞初次渲染</li>
+<li>不管CSS出现在哪个位置都会阻塞整个文档初次渲染</li>
+<li>通过Link标签引入CSS阻塞的时间更长</li>
+</ul>
+<blockquote>
+<p>说法2：</p>
+</blockquote>
+<ul>
+<li>JS引擎 ，渲染引擎，同时工作。</li>
+<li>渲染引擎会先加载页面，逐步完成上述过程，但在遇到link和script标签时，HTML Paser会被阻塞。</li>
+<li>但在遇到link和script标签时，HTML Paser会被阻塞。</li>
+</ul>
+<blockquote>
+<p>现代浏览器在HTML解析器被阻塞时，仍然会识别后面的资源，但这属于预加载，并不是真正意义上的解析。</p>
+</blockquote>
+<p>有以下两点：</p>
+<ol>
+<li>默认情况下，CSS 被视为阻塞渲染的资源，这意味着浏览器将不会渲染任何已处理的内容，直至 CSSOM 构建完毕</li>
+<li>JavaScript 不仅可以读取和修改 DOM 属性，还可以读取和修改 CSSOM 属性</li>
+</ol>
+<p>存在阻塞的 CSS 资源时，浏览器会延迟 JavaScript 的执行和 DOM 构建。另外：</p>
+<ul>
+<li>当浏览器遇到一个 script 标记时，DOM 构建将暂停，直至脚本完成执行。</li>
+<li>JavaScript 可以查询和修改 DOM 与 CSSOM。<br>CSSOM 构建时，JavaScript 执行将暂停，直至 CSSOM 就绪。</li>
+</ul>
+<p>所以，script 标签的位置很重要。实际使用时，可以遵循下面两个原则：</p>
+<ul>
+<li>CSS 优先：引入顺序上，CSS 资源先于 JavaScript 资源。</li>
+<li>JavaScript 应尽量少影响 DOM 的构建。</li>
+</ul>
+<p>解析器一旦读取到script标签(内联或外联)时，会阻塞DOM构建，它会去请求脚本并执行完成后才继续执行下去。<br>这里async和defer标签除外，async和defer属性会让脚本延后执行，不会阻塞浏览器解析。</p>
+<h2 id="回流与重绘（reflows-and-repaints）"><a href="#回流与重绘（reflows-and-repaints）" class="headerlink" title="回流与重绘（reflows and repaints）"></a>回流与重绘（reflows and repaints）</h2><ol>
+<li><p>当render tree中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流(reflow)。每个页面至少需要一次回流，就是在页面第一次加载的时候。在回流的时候，浏览器会使渲染树中受到影响的部分失效，并重新构造这部分渲染树，完成回流后，浏览器会重新绘制受影响的部分到屏幕中，该过程成为重绘。</p>
+</li>
+<li><p>当render tree中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如background-color。则就叫称为重绘。</p>
+<p>注意：回流必将引起重绘，而重绘不一定会引起回流。</p>
+</li>
+</ol>
+<p>下面任何操作都会触发重绘或者回流：</p>
+<ul>
+<li>改变窗口大小</li>
+<li>改变文字大小</li>
+<li>添加/删除样式表</li>
+<li>内容的改变，(用户在输入框中写入内容也会)</li>
+<li>激活伪类，如:hover</li>
+<li>操作class属性</li>
+<li>脚本操作DOM</li>
+<li>计算offsetWidth和offsetHeight</li>
+<li>设置style属性</li>
+</ul>
+<h2 id="减少重绘和回流-重排"><a href="#减少重绘和回流-重排" class="headerlink" title="减少重绘和回流(重排)"></a>减少重绘和回流(重排)</h2><h3 id="代码是如何影响回流和重绘的"><a href="#代码是如何影响回流和重绘的" class="headerlink" title="代码是如何影响回流和重绘的:"></a>代码是如何影响回流和重绘的:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.body.style;</span><br><span class="line">s.padding = <span class="string">"2px"</span>; <span class="comment">// 回流+重绘</span></span><br><span class="line">s.border = <span class="string">"1px solid red"</span>; <span class="comment">// 再一次 回流+重绘</span></span><br><span class="line">s.color = <span class="string">"blue"</span>; <span class="comment">// 再一次重绘</span></span><br><span class="line">s.backgroundColor = <span class="string">"#ccc"</span>; <span class="comment">// 再一次 重绘</span></span><br><span class="line">s.fontSize = <span class="string">"14px"</span>; <span class="comment">// 再一次 回流+重绘</span></span><br><span class="line"><span class="comment">// 添加node，再一次 回流+重绘</span></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">'abc!'</span>));</span><br></pre></td></tr></table></figure>
+<p>说到这里大家都知道回流比重绘的代价要更高，回流的花销跟render tree有多少节点需要重新构建有关系，假设你直接操作body，比如在body最前面插入1个元素，会导致整个render tree回流，这样代价当然会比较高，但如果是指body后面插入1个元素，则不会影响前面元素的回流</p>
+<h3 id="浏览器操作回流重绘"><a href="#浏览器操作回流重绘" class="headerlink" title="浏览器操作回流重绘"></a>浏览器操作回流重绘</h3><p>从上个实例代码中可以看到几行简单的JS代码就引起了6次左右的回流、重绘。而且我们也知道回流的花销也不小，如果每句JS操作都去回流重绘的话，浏览器可能就会受不了。所以很多浏览器都会优化这些操作，浏览器会维护1个队列，把所有会引起回流、重绘的操作放入这个队列，等队列中的操作到了一定的数量或者到了一定的时间间隔，浏览器就会flush队列，进行一个批处理。这样就会让多次的回流、重绘变成一次回流重绘。</p>
+<p>虽然有了浏览器的优化，但有时候我们写的一些代码可能会强制浏览器提前flush队列，这样浏览器的优化可能就起不到作用了。当你请求向浏览器请求一些 style信息的时候，就会让浏览器flush队列，比如：</p>
+<ol>
+<li><p>offsetTop, offsetLeft, offsetWidth, offsetHeight</p>
+</li>
+<li><p>scrollTop/Left/Width/Height</p>
+</li>
+<li><p>clientTop/Left/Width/Height</p>
+</li>
+<li><p>width,height</p>
+</li>
+<li><p>请求了getComputedStyle(), 或者 IE的 currentStyle</p>
+</li>
+</ol>
+<p>当你请求上面的一些属性的时候，浏览器为了给你最精确的值，需要flush队列，因为队列中可能会有影响到这些值的操作。即使你获取元素的布局和样式信息跟最近发生或改变的布局信息无关，浏览器都会强行刷新渲染队列。</p>
+<h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>减少回流、重绘其实就是需要减少对render tree的操作（合并多次多DOM和样式的修改），并减少对一些style信息的请求，尽量利用好浏览器的优化策略。具体方法有：</p>
+<ul>
+<li>不要一个一个地单独修改属性，最好通过一个classname来定义这些修改</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">var</span> left = <span class="number">10</span>,    top = <span class="number">10</span>;</span><br><span class="line">el.style.left = left + <span class="string">"px"</span>;</span><br><span class="line">el.style.top  = top  + <span class="string">"px"</span>; </span><br><span class="line"><span class="comment">// good </span></span><br><span class="line">el.className += <span class="string">" theclassname"</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>让要操作的元素进行”离线处理”，处理完后一起更新</li>
+</ul>
+<p>a) 使用DocumentFragment进行缓存操作,引发一次回流和重绘；</p>
+<p>b) 使用display:none技术，只引发两次回流和重绘；</p>
+<p>c) 使用cloneNode(true or false) 和 replaceChild 技术，引发一次回流和重绘；</p>
+<ul>
+<li><p>不要频繁获取计算后的样式。如果你需要使用计算后的样式，最好暂存起来而不是直接从DOM上读取。</p>
+</li>
+<li><p>总的来说，总是考虑到渲染树的存在，考虑到你的一次修改会导致多大的绘制操作。比如绝对定位元素的动画就不会影响其他大部分元素。</p>
+</li>
+</ul>
+<h2 id="document-createElement"><a href="#document-createElement" class="headerlink" title="document.createElement"></a>document.createElement</h2><ul>
+<li>使用 document.createElement 创建的 script 默认是异步的，示例如下。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.createElement(<span class="string">"script"</span>).async); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>所以，通过动态添加 script 标签引入 JavaScript 文件默认是不会阻塞页面的。如果想同步执行，需要将 async 属性人为设置为 false。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="wingci 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Server/" rel="tag"># Server</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/18/iOS 加密/" rel="next" title="iOS加密">
+                <i class="fa fa-chevron-left"></i> iOS加密
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wingci</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-浏览器解析html源码，然后创建一个-DOM树"><span class="nav-number">1.</span> <span class="nav-text">1.浏览器解析html源码，然后创建一个 DOM树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树"><span class="nav-number">2.</span> <span class="nav-text">2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DOM-Tree-CSSOM-生成-渲染树（rendering-tree"><span class="nav-number">3.</span> <span class="nav-text">3.DOM Tree + CSSOM 生成 渲染树（rendering tree)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-浏览器就可以根据渲染树直接把页面绘制到屏幕上-Layout-Paint"><span class="nav-number">4.</span> <span class="nav-text">4.浏览器就可以根据渲染树直接把页面绘制到屏幕上(Layout+Paint)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞渲染：CSS与JavaScript"><span class="nav-number"></span> <span class="nav-text">阻塞渲染：CSS与JavaScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回流与重绘（reflows-and-repaints）"><span class="nav-number"></span> <span class="nav-text">回流与重绘（reflows and repaints）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少重绘和回流-重排"><span class="nav-number"></span> <span class="nav-text">减少重绘和回流(重排)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码是如何影响回流和重绘的"><span class="nav-number">1.</span> <span class="nav-text">代码是如何影响回流和重绘的:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器操作回流重绘"><span class="nav-number">2.</span> <span class="nav-text">浏览器操作回流重绘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心思想"><span class="nav-number">3.</span> <span class="nav-text">核心思想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#document-createElement"><span class="nav-number"></span> <span class="nav-text">document.createElement</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wingci</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wingci.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/10/18/浏览器工作基本原理/';
+          this.page.identifier = '2017/10/18/浏览器工作基本原理/';
+          this.page.title = '浏览器引擎渲染页面流程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wingci.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

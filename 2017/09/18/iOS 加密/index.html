@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Server," />
 
 
 
@@ -79,13 +79,15 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wingci&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta name="keywords" content="Server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS加密">
+<meta property="og:url" content="http://yoursite.com/2017/09/18/iOS 加密/index.html">
 <meta property="og:site_name" content="Wingci&#39;s Blog">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-21T14:45:44.565Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wingci&#39;s Blog">
+<meta name="twitter:title" content="iOS加密">
 
 
 
@@ -115,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/18/iOS 加密/"/>
 
 
 
 
 
-  <title>Wingci's Blog</title>
+  <title>iOS加密 | Wingci's Blog</title>
   
 
 
@@ -140,8 +142,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +235,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -249,7 +250,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/18/iOS COCOA框架/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/iOS 加密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wingci">
@@ -266,9 +267,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/04/18/iOS COCOA框架/" itemprop="url">iOS COCOA框架</a></h1>
+          <h1 class="post-title" itemprop="name headline">iOS加密</h1>
         
 
         <div class="post-meta">
@@ -280,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-18T16:31:15+08:00">
-                2016-04-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T18:30:15+08:00">
+                2017-09-18
               </time>
             
 
@@ -299,9 +298,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/04/18/iOS COCOA框架/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/18/iOS 加密/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/04/18/iOS COCOA框架/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/18/iOS 加密/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -329,16 +328,72 @@
       
 
       
-        
-          <hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/18/iOS COCOA框架/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <hr>
+<a id="more"></a>
+<h2 id="加密方式对应的算法"><a href="#加密方式对应的算法" class="headerlink" title="加密方式对应的算法"></a>加密方式对应的算法</h2><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对称加密</td>
+<td>DES，AES</td>
+</tr>
+<tr>
+<td>非对称加密</td>
+<td>RSA</td>
+</tr>
+<tr>
+<td>单向加密</td>
+<td>Base64，MD5，SHA，HMAC</td>
+</tr>
+</tbody>
+</table>
+<h2 id="可逆-不可以加密"><a href="#可逆-不可以加密" class="headerlink" title="可逆/不可以加密"></a>可逆/不可以加密</h2><blockquote>
+<p>可逆</p>
+</blockquote>
+<ul>
+<li>DES，AES，RSA，Base64</li>
+</ul>
+<blockquote>
+<p>不可逆</p>
+</blockquote>
+<ul>
+<li>MD5，SHA，HMAC</li>
+</ul>
+<h2 id="对称加密与非对称加密区别"><a href="#对称加密与非对称加密区别" class="headerlink" title="对称加密与非对称加密区别"></a>对称加密与非对称加密区别</h2><ul>
+<li>对称加密：服务端和客户端都是用同一个秘钥</li>
+<li>非对称加密：使用了一对秘钥，公钥与私钥，用公钥加密，用私钥解密</li>
+</ul>
+<h2 id="AES算法"><a href="#AES算法" class="headerlink" title="AES算法"></a>AES算法</h2><ul>
+<li>128位加密</li>
+<li>192位加密</li>
+<li>256位加密</li>
+</ul>
+<h2 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h2><ul>
+<li>基于大数的因式分解的数学难题</li>
+<li>RSA算法：由1978年提出，MIT学生，R，A，L共同提出</li>
+</ul>
+<h2 id="DES与AES的区别"><a href="#DES与AES的区别" class="headerlink" title="DES与AES的区别"></a>DES与AES的区别</h2><ul>
+<li>DES以64位为分组数据进行加密（一般用3重des提高安全级别）</li>
+<li>AES支持可变分组长度，分组长度可设定为32 比特的任意倍数，最小值为128 比特，最大值为256 比特。</li>
+</ul>
+<h2 id="RSA算法口诀"><a href="#RSA算法口诀" class="headerlink" title="RSA算法口诀"></a>RSA算法口诀</h2><ul>
+<li>公钥加密的数据，必须使用私钥才可以解密，同样私钥加密的数据，必须通过公钥进行解密</li>
+</ul>
+<h2 id="常见应用场景"><a href="#常见应用场景" class="headerlink" title="常见应用场景"></a>常见应用场景</h2><ul>
+<li>苹果的App Store采用的就是AES</li>
+<li>Git 采用的SSH加密原理，是基于RSA非对称加密</li>
+</ul>
+<h2 id="实际项目采用的加密"><a href="#实际项目采用的加密" class="headerlink" title="实际项目采用的加密"></a>实际项目采用的加密</h2><ul>
+<li>（ 参数的value根据key降序/升序 + salt/key  ） md5加密 得到 参数</li>
+<li>提高安全级别又想可逆：通常采用Base64+AES</li>
+<li>一般用3重des提高安全级别</li>
+</ul>
+
       
     </div>
     
@@ -348,289 +403,69 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="wingci 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/05/17/库，框架，架构，平台/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wingci">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wingci's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/05/17/库，框架，架构，平台/" itemprop="url">库，框架，架构，平台，设计模式的思考</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-17T16:31:15+08:00">
-                2015-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Server/" rel="tag"># Server</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/05/17/库，框架，架构，平台/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/05/17/库，框架，架构，平台/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/05/17/库，框架，架构，平台/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/18/服务器基本操作/" rel="next" title="服务器基本操作">
+                <i class="fa fa-chevron-left"></i> 服务器基本操作
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/04/18/iOS OC之 Extension与Categroy的区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wingci">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wingci's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/04/18/iOS OC之 Extension与Categroy的区别/" itemprop="url">iOS OC之Extension与Categroy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-18T16:31:15+08:00">
-                2015-04-18
-              </time>
+              <a href="/2017/10/18/浏览器工作基本原理/" rel="prev" title="浏览器引擎渲染页面流程">
+                浏览器引擎渲染页面流程 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/04/18/iOS OC之 Extension与Categroy的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/04/18/iOS OC之 Extension与Categroy的区别/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/04/18/iOS OC之 Extension与Categroy的区别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -640,14 +475,11 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -655,6 +487,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -675,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -727,6 +582,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加密方式对应的算法"><span class="nav-number">1.</span> <span class="nav-text">加密方式对应的算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可逆-不可以加密"><span class="nav-number">2.</span> <span class="nav-text">可逆/不可以加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密与非对称加密区别"><span class="nav-number">3.</span> <span class="nav-text">对称加密与非对称加密区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AES算法"><span class="nav-number">4.</span> <span class="nav-text">AES算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA算法"><span class="nav-number">5.</span> <span class="nav-text">RSA算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DES与AES的区别"><span class="nav-number">6.</span> <span class="nav-text">DES与AES的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA算法口诀"><span class="nav-number">7.</span> <span class="nav-text">RSA算法口诀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见应用场景"><span class="nav-number">8.</span> <span class="nav-text">常见应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际项目采用的加密"><span class="nav-number">9.</span> <span class="nav-text">实际项目采用的加密</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -860,6 +731,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -877,6 +752,18 @@
       <script id="dsq-count-scr" src="https://wingci.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/09/18/iOS 加密/';
+          this.page.identifier = '2017/09/18/iOS 加密/';
+          this.page.title = 'iOS加密';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wingci.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

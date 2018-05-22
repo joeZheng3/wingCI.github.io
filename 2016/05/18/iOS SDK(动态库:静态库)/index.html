@@ -293,6 +293,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/18/iOS SDK(动态库:静态库)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/05/18/iOS SDK(动态库:静态库)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -464,6 +475,30 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="wingci 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -484,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/18/开源许可证/" rel="next" title="开源等于免费？">
-                <i class="fa fa-chevron-left"></i> 开源等于免费？
+              <a href="/2016/04/18/iOS COCOA框架/" rel="next" title="iOS COCOA框架">
+                <i class="fa fa-chevron-left"></i> iOS COCOA框架
               </a>
             
           </div>
@@ -494,8 +529,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/18/iOS 沙盒路径/" rel="prev" title="iOS 沙盒路径">
-                iOS 沙盒路径 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/18/开源许可证/" rel="prev" title="开源等于免费？">
+                开源等于免费？ <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,6 +559,16 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -573,7 +618,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -775,6 +820,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://wingci.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/05/18/iOS SDK(动态库:静态库)/';
+          this.page.identifier = '2016/05/18/iOS SDK(动态库:静态库)/';
+          this.page.title = 'iOS SDK(动态库/静态库)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wingci.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -787,10 +852,6 @@
   
 
 
-
-
-
-  
 
 
 
