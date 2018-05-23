@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+.pace .pace-progress {
+background: #1E92FB; /*进度条颜色*/
+height: 3px;
+}
+.pace .pace-progress-inner {
+box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+}
+.pace .pace-activity {
+border-top-color: #1E92FB;    /*上边框颜色*/
+border-left-color: #1E92FB;    /*左边框颜色*/
+}
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Network," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS网络基础">
+<meta property="og:url" content="http://yoursite.com/2016/07/18/iOS网络开发/index.html">
+<meta property="og:site_name" content="WingChit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/593345/201702/593345-20170204231325729-1747734402.png">
+<meta property="og:image" content="https://mccdn.qcloud.com/static/img/4e7b6439145e3db6c0a2ff62eec24322/image.jpg">
+<meta property="og:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=17baf4c7d739b60059c307e588395e4f/d000baa1cd11728b45647b06cafcc3cec3fd2c4c.jpg">
+<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=732201579,3845546298&fm=27&gp=0.jpg">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160323/1458719461811413.png">
+<meta property="og:updated_time" content="2018-05-23T10:17:38.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS网络基础">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/593345/201702/593345-20170204231325729-1747734402.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/18/iOS网络开发/"/>
+
+
+
+
+
+  <title>iOS网络基础 | WingChit</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/wingci"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WingChit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zero</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/18/iOS网络开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wingci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WingChit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS网络基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-18T16:31:15+08:00">
+                2016-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS-Network/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS Network</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/07/18/iOS网络开发/" class="leancloud_visitors" data-flag-title="iOS网络基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,942
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h2 id="OSI-RM网络模型"><a href="#OSI-RM网络模型" class="headerlink" title="OSI/RM网络模型"></a>OSI/RM网络模型</h2><h3 id="基本理解"><a href="#基本理解" class="headerlink" title="基本理解"></a>基本理解</h3><ul>
+<li>OSI是国际标准的网络模型，它是由iSO组织规定的网络的标准框架，是一个理想的网络模型，它主要把网络分为7层</li>
+</ul>
+<h3 id="OSI-7层网络模型"><a href="#OSI-7层网络模型" class="headerlink" title="OSI 7层网络模型"></a>OSI 7层网络模型</h3><p>OSI主要把计算机网络结构分为7层：</p>
+<ul>
+<li>应用层 ：http协议，FTP协议(常见传文件协议)，Telnet协议，DNS 协议</li>
+<li>表示层  </li>
+<li>会话层</li>
+<li>传输层 ：tcp协议，udp协议</li>
+<li>网络层 ：ip协议，arp协议</li>
+<li>数据链路层</li>
+<li>物理层</li>
+</ul>
+<h3 id="实际常用的网络层级"><a href="#实际常用的网络层级" class="headerlink" title="实际常用的网络层级"></a>实际常用的网络层级</h3><ul>
+<li>软件开发：应用层，传输层</li>
+<li>运维：网络层，数据链路层，物理层</li>
+</ul>
+<h3 id="OSI模型与TCP模型的区别"><a href="#OSI模型与TCP模型的区别" class="headerlink" title="OSI模型与TCP模型的区别"></a>OSI模型与TCP模型的区别</h3><ul>
+<li>OSI是理想网络模型，TCP是实际好用的网络模型，OSI模型实际上被 TCP/IP 4层模型淘汰。</li>
+</ul>
+<h2 id="TCP-IP-网络模型"><a href="#TCP-IP-网络模型" class="headerlink" title="TCP/IP 网络模型"></a>TCP/IP 网络模型</h2><h3 id="基本理解-1"><a href="#基本理解-1" class="headerlink" title="基本理解"></a>基本理解</h3><ul>
+<li>TCP/IP五层模型的协议分为：应用层、传输层、网络层、数据链路层和物理层。</li>
+<li>注意TCP/IP模型 与 TCP/IP 协议的区别，TCP/IP协议 包含</li>
+</ul>
+<h3 id="TCP-IP-4层网络模型"><a href="#TCP-IP-4层网络模型" class="headerlink" title="TCP/IP 4层网络模型"></a>TCP/IP 4层网络模型</h3><ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>物理层</li>
+</ul>
+<h2 id="Socket的理解"><a href="#Socket的理解" class="headerlink" title="Socket的理解"></a>Socket的理解</h2><ul>
+<li><p>Socket是套文字的意思</p>
+</li>
+<li><p>WEB使用HTTP(或者ftp，或者自定义协议)作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发送到网络上。</p>
+</li>
+<li><p>Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API），通过Socket，我们才能使用TCP/IP协议。</p>
+</li>
+<li><p>粗暴理解，Socket就是可以调用TCP/IP协议的工具/类/库。</p>
+</li>
+</ul>
+<h2 id="TCP与UDP协议的区别"><a href="#TCP与UDP协议的区别" class="headerlink" title="TCP与UDP协议的区别"></a>TCP与UDP协议的区别</h2><ul>
+<li>TCP协议相当于打电话（三次握手）</li>
+<li>UDP协议相当发短信</li>
+<li>基于连接和无连接</li>
+<li>对系统资源要求(TCP较多,UDP较少)</li>
+<li>UDP程序结构较简单</li>
+<li>TCP是流模式,UDP是数据报模式</li>
+<li>可靠性:TCP保证数据正确性,UDP可能丢包,不保证数据准确性</li>
+</ul>
+<h2 id="Http，Tcp，Socket连接的区别"><a href="#Http，Tcp，Socket连接的区别" class="headerlink" title="Http，Tcp，Socket连接的区别"></a>Http，Tcp，Socket连接的区别</h2><h3 id="Http-连接-（App常用网络连接）"><a href="#Http-连接-（App常用网络连接）" class="headerlink" title="Http 连接 （App常用网络连接）"></a>Http 连接 （App常用网络连接）</h3><ul>
+<li><p>HTTP协议是建立在TCP协议之上的一种应用。</p>
+</li>
+<li><p>HTTP连接是基于TCP连接的，客户端往服务端发送一个HTTP请求时第一步就是要建立与服务端的TCP连接，也就是先三次握手。从HTTP 1.1（1999年）开始支持持久连接，也就是一次TCP连接可以发送多次的HTTP请求。</p>
+</li>
+<li><p>HTTP连接最显著的特点是客户端发送的每次请求都需要服务器回送响应，在请求结束后，会主动释放连接。从建立连接到关闭连接的过程称为“一次连接”，由于HTTP在每次请求结束后都会主动释放连接，因此HTTP连接是一种“短连接”。</p>
+</li>
+<li><p>在HTTP 1.0中，客户端的每次请求都要求建立一次单独的连接，在处理完本次请求后，就自动释放连接。</p>
+</li>
+<li><p>在HTTP 1.1中则可以在一次连接中处理多个请求，并且多个请求可以重叠进行，不需要等待一个请求结束后再发送下一个请求。</p>
+</li>
+</ul>
+<h3 id="Tcp-连接"><a href="#Tcp-连接" class="headerlink" title="Tcp 连接"></a>Tcp 连接</h3><h4 id="三次握手图解"><a href="#三次握手图解" class="headerlink" title="三次握手图解"></a>三次握手图解</h4><p><img src="https://images2015.cnblogs.com/blog/593345/201702/593345-20170204231325729-1747734402.png" alt=""></p>
+<h4 id="四次握手图解"><a href="#四次握手图解" class="headerlink" title="四次握手图解"></a>四次握手图解</h4><p><img src="https://mccdn.qcloud.com/static/img/4e7b6439145e3db6c0a2ff62eec24322/image.jpg" alt=""></p>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li><p>手机能够使用联网功能是因为手机底层实现了TCP/IP协议，可以使手机终端通过无线网络建立TCP连接</p>
+</li>
+<li><p>TCP连接需要经过“三次握手</p>
+</li>
+<li><p>第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
+</li>
+<li><p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+</li>
+<li><p>第三次握手：客户端收到服务器的SYN＋ACK包，向服务器发送确认包ACK(ack=k+1)，此包发送完毕，客户端和服务器进入ESTABLISHED状态，完成三次握手。</p>
+</li>
+</ul>
+<blockquote>
+<p>握手过程中传送的包里不包含数据，三次握手完毕后，客户端与服务器才正式开始传送数据。理想状态下，TCP连接一旦建立，在通信双方中的任何一方主动关闭连接之前，TCP<br>连接都将被一直保持下去。断开连接时服务器和客户端均可以主动发起断开TCP连接的请求，断开过程需要经过四次握手。</p>
+</blockquote>
+<h3 id="Socket-连接"><a href="#Socket-连接" class="headerlink" title="Socket 连接"></a>Socket 连接</h3><h4 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h4><ul>
+<li><p>由于Socket（套文字）本身不是协议，是对TCP/IP协议封装的接口，所以Socket连接可以是基于TCP连接，也可以是基于UDP连接。</p>
+</li>
+<li><p>建立Socket连接至少需要一对套接字，其中一个运行于客户端，称为ClientSocket，另一个运行于服务器端，称为ServerSocket</p>
+</li>
+<li><p>套接字之间的连接过程分为三个步骤：服务器监听，客户端请求，连接确认。</p>
+</li>
+<li><p>服务器监听：启动一个Loop，等待客户端ClientSocke的连接请求。</p>
+</li>
+<li><p>客户端请求：连接服务器ServerSocket的地址和端口号，然后就向服务器ServerSocket提出连接请求</p>
+</li>
+<li><p>连接确认：当服务器端套接字监听到或者说接收到客户端套接字的连接请求时，就响应客户端套接字的请求，建立一个新的线程，把服务器端套接字的描述发给客户端，一旦客户端确认了此描述，双方就正式建立连接。而服务器端套接字继续处于监听状态，继续接收其他客户端套接字的连接请求</p>
+</li>
+</ul>
+<blockquote>
+<p>提示： 基于TCP协议的socket连接同样需要通过三次握手建立连接，是可靠的；基于UDP协议的socket连接不需要建立连接的过程，不过对方能不能收到都会发送过去，是不可靠的，大多数的即时通讯IM都是后者。</p>
+</blockquote>
+<h4 id="Socket-tcp形式连接图解"><a href="#Socket-tcp形式连接图解" class="headerlink" title="Socket tcp形式连接图解"></a>Socket tcp形式连接图解</h4><p><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=17baf4c7d739b60059c307e588395e4f/d000baa1cd11728b45647b06cafcc3cec3fd2c4c.jpg" alt=""></p>
+<h4 id="socket底层是纯C语言-跨平台-udp形式连接图解"><a href="#socket底层是纯C语言-跨平台-udp形式连接图解" class="headerlink" title="socket底层是纯C语言,跨平台, udp形式连接图解"></a>socket底层是纯C语言,跨平台, udp形式连接图解</h4><p><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=732201579,3845546298&amp;fm=27&amp;gp=0.jpg" alt=""></p>
+<h4 id="iOS-Socket编程思路"><a href="#iOS-Socket编程思路" class="headerlink" title="iOS Socket编程思路"></a>iOS Socket编程思路</h4><ol>
+<li>创建客户端Socket.</li>
+<li>连接到服务器Socket.</li>
+<li>客户端Socket发送数据到服务器Socket.</li>
+<li>客户端Socket接收服务器返回的数据.</li>
+<li>关闭客户端Socket.</li>
+</ol>
+<h3 id="三者之间区别图解"><a href="#三者之间区别图解" class="headerlink" title="三者之间区别图解"></a>三者之间区别图解</h3><p><img src="http://cc.cocimg.com/api/uploads/20160323/1458719461811413.png" alt=""></p>
+<h3 id="三者区别"><a href="#三者区别" class="headerlink" title="三者区别"></a>三者区别</h3><ul>
+<li><p>实际上 HTTP 连接是基于， 用Socket封装网络请求框架(原生的有：NSURLSession,NSURLConnection。第三方的：ASI(基于CFNetworking)，AFNetworking)建立起的 TCP 连接。并在HTTP1.1中加入keep-alive的属性让HTTP连接，不会在请求完数据完之后立刻断开TCP连接。</p>
+</li>
+<li><p>HTTP连接是应用层的，TCP连接是传输层的，一级一级的响应式向上传递状态。</p>
+</li>
+<li><p>实际使用过程中，三者的区别，iOS客户端为例，HTTP连接只需要一个URL地址，和一个Prama参数就可以完成数据请求，而使用到Socket连接的需求是有持续交互的数据，比如同花顺APP的即时数据，即时通讯的即时数据，通常是以信息流的方式实现的Socket连接。</p>
+</li>
+<li><p>网络框架底层实现TCP连接 都是用Soket编程实现的</p>
+</li>
+<li><p>创建Socket连接时，可以指定使用的传输层协议，Socket可以支持不同的传输层协议（TCP或UDP），当使用TCP协议进行连接时，该Socket连接就是一个TCP连接。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：实际网络应用中，客户端到服务器之间的通信往往需要穿越多个中间节点，例如路由器、网关、防火墙等，大部分防火墙默认会关闭长时间处于非活跃状态的连接而导致Socket 连接断连，因此需要通过轮询告诉网络，该连接处于活跃状态。</p>
+</blockquote>
+<h2 id="长连接和短连接区别"><a href="#长连接和短连接区别" class="headerlink" title="长连接和短连接区别"></a>长连接和短连接区别</h2><ul>
+<li>短连接的操作步骤是：<br>建立连接——数据传输——关闭连接…建立连接——数据传输——关闭连接</li>
+<li>长连接的操作步骤是：<br>建立连接——数据传输…（保持连接）…数据传输——关闭连接</li>
+</ul>
+<blockquote>
+<p>注意：使用长连接时候，要考虑到服务器最大TCP连接数，最大动态端口数等影响请求响应的因素。</p>
+</blockquote>
+<h2 id="Http长连接与短连接的区别"><a href="#Http长连接与短连接的区别" class="headerlink" title="Http长连接与短连接的区别"></a>Http长连接与短连接的区别</h2><ul>
+<li>Http1.0是属于短连接的，即建立一个Tcp连接，完成http数据传递后就断开Tcp连接</li>
+<li>http长连接指的是http1.0后，报文头出来一个Connection:keep-alive属性，告诉服务器，不要发送接受完数据后，立刻断开连接</li>
+</ul>
+<h2 id="Http常见头信息"><a href="#Http常见头信息" class="headerlink" title="Http常见头信息"></a>Http常见头信息</h2><ul>
+<li><p>HTTP状态码</p>
+<ul>
+<li>1xx:信息响应类，表示接收到请求并且继续处理</li>
+<li>2xx:处理成功响应类，表示动作被成功接收、理解和接受，常见为200</li>
+<li>3xx:重定向响应类，为了完成指定的动作，必须接受进一步处理</li>
+<li>4xx:客户端错误，客户请求包含语法错误或者是不能正确执行；常见的404错误，就是找不到资源，赶紧检查URL是否正确吧</li>
+<li>5xx:服务端错误，服务器不能正确执行一个正确的请求；若见到500的错误，则可以判断是服务端处理存在问题</li>
+</ul>
+</li>
+<li><p>Content-Type (常用，根据服务器需求设定)</p>
+</li>
+</ul>
+<p>表示后面的消息体属于什么MIME类型。Java Servlet默认为text/plain，但通常需要显式地指定为text/html；而对基于Json的REST交互，则需要配置为application/json。类型和内容不一致的话，则可能导致应用收到消息后不能正常解析。</p>
+<ul>
+<li>Content-Length</li>
+</ul>
+<p>表示消息体的长度。在服务联调过程中，可能会出现网络问题或连接断开导致消息传递不完整，这个时候通过该字段可以判断消息体长度和正常时是否一致来排查问题。</p>
+<ul>
+<li>Accept</li>
+</ul>
+<p>浏览器/客户端告诉服务端自己接受的介质类型（即Content-Type），/表示任何类型，type/*表示该类型下的所有子类型。</p>
+<ul>
+<li>Accept-Charset</li>
+</ul>
+<p>浏览器/客户端申明自己接受的字符集编码</p>
+<ul>
+<li>Date</li>
+</ul>
+<p>表示消息发送的时间，时间的描述格式由RFC822定义。例如，Date: Fri, 06 Apr 2018 15:02:56 GMT。Date描述的时间表示世界标准时（即0时区），换算成本地时间需要知道用户所在的时区。</p>
+<ul>
+<li>User-Agent</li>
+</ul>
+<p>标识请求者的一些信息，如什么浏览器类型和版本、操作系统，使用语言等信息，例如：Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36</p>
+<ul>
+<li>Cookie</li>
+</ul>
+<p>HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器。</p>
+<ul>
+<li>Connection<ul>
+<li>Connection: keep-alive 当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，如果客户端再次访问这个服务器上的网页，会继续使用这一条已经建立的连接</li>
+<li>Connection: close 代表一个Request完成后，客户端和服务器之间用于传输HTTP数据的TCP连接会关闭， 当客户端再次发送Request，需要重新建立TCP连接</li>
+</ul>
+</li>
+</ul>
+<h2 id="Http-常见Content-Type类型"><a href="#Http-常见Content-Type类型" class="headerlink" title="Http 常见Content-Type类型"></a>Http 常见Content-Type类型</h2><ul>
+<li>application/x-www-form-urlencoded：当action为get时候，浏览器用x-www-form-urlencoded的编码方式把form数据转换成一个字串</li>
+<li>multipart/form-data：一般用于提交图片</li>
+<li>text/plain：模式模式</li>
+<li>application/json：一般用于请求服务JSON格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//AFNetWorking设置请求头为例</span><br><span class="line">manager.requestSerializer = [AFJSONRequestSerializer serializer];</span><br><span class="line">manager.requestSerializer = [AFHTTPRequestSerializer serializer];</span><br><span class="line">//AFNetworking响应头为例子</span><br><span class="line">manager.responseSerializer = [AFJSONResponseSerializer serializer]; //JSON</span><br><span class="line">manager.responseSerializer = [AFXMLParserResponseSerializer serializer]; //XML</span><br><span class="line">manager.responseSerializer = [AFHTTPResponseSerializer serializer];</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/19/Clarles常见使用/" rel="next" title="Clarles常见使用">
+                <i class="fa fa-chevron-left"></i> Clarles常见使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/12/MAC+Hexo/" rel="prev" title="MAC+HEXO">
+                MAC+HEXO <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wingci</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI-RM网络模型"><span class="nav-number">1.</span> <span class="nav-text">OSI/RM网络模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本理解"><span class="nav-number">1.1.</span> <span class="nav-text">基本理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-7层网络模型"><span class="nav-number">1.2.</span> <span class="nav-text">OSI 7层网络模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际常用的网络层级"><span class="nav-number">1.3.</span> <span class="nav-text">实际常用的网络层级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI模型与TCP模型的区别"><span class="nav-number">1.4.</span> <span class="nav-text">OSI模型与TCP模型的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP-网络模型"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP 网络模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本理解-1"><span class="nav-number">2.1.</span> <span class="nav-text">基本理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP-4层网络模型"><span class="nav-number">2.2.</span> <span class="nav-text">TCP/IP 4层网络模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket的理解"><span class="nav-number">3.</span> <span class="nav-text">Socket的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP与UDP协议的区别"><span class="nav-number">4.</span> <span class="nav-text">TCP与UDP协议的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http，Tcp，Socket连接的区别"><span class="nav-number">5.</span> <span class="nav-text">Http，Tcp，Socket连接的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http-连接-（App常用网络连接）"><span class="nav-number">5.1.</span> <span class="nav-text">Http 连接 （App常用网络连接）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tcp-连接"><span class="nav-number">5.2.</span> <span class="nav-text">Tcp 连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三次握手图解"><span class="nav-number">5.2.1.</span> <span class="nav-text">三次握手图解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四次握手图解"><span class="nav-number">5.2.2.</span> <span class="nav-text">四次握手图解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">5.2.3.</span> <span class="nav-text">基本概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket-连接"><span class="nav-number">5.3.</span> <span class="nav-text">Socket 连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本原理"><span class="nav-number">5.3.1.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Socket-tcp形式连接图解"><span class="nav-number">5.3.2.</span> <span class="nav-text">Socket tcp形式连接图解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#socket底层是纯C语言-跨平台-udp形式连接图解"><span class="nav-number">5.3.3.</span> <span class="nav-text">socket底层是纯C语言,跨平台, udp形式连接图解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-Socket编程思路"><span class="nav-number">5.3.4.</span> <span class="nav-text">iOS Socket编程思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三者之间区别图解"><span class="nav-number">5.4.</span> <span class="nav-text">三者之间区别图解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三者区别"><span class="nav-number">5.5.</span> <span class="nav-text">三者区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#长连接和短连接区别"><span class="nav-number">6.</span> <span class="nav-text">长连接和短连接区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http长连接与短连接的区别"><span class="nav-number">7.</span> <span class="nav-text">Http长连接与短连接的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http常见头信息"><span class="nav-number">8.</span> <span class="nav-text">Http常见头信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http-常见Content-Type类型"><span class="nav-number">9.</span> <span class="nav-text">Http 常见Content-Type类型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wingci</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">28.9k</span>
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+<div class="powered-by"></div>
+<span class="post-count">博客全站共28.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("YVk67ES9JxH4F81acMEg0yCb-gzGzoHsz", "ez7a1paTd3EuT97I2TlO9lFS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
