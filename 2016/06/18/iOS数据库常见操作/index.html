@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+.pace .pace-progress {
+background: #1E92FB; /*进度条颜色*/
+height: 3px;
+}
+.pace .pace-progress-inner {
+box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+}
+.pace .pace-activity {
+border-top-color: #1E92FB;    /*上边框颜色*/
+border-left-color: #1E92FB;    /*左边框颜色*/
+}
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据库," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS数据库常见操作">
+<meta property="og:url" content="http://yoursite.com/2016/06/18/iOS数据库常见操作/index.html">
+<meta property="og:site_name" content="WingChit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1196725-28ecc7d82b8c6405.png?imageMogr2/auto-orient/">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/795875-c5426a9c42eedd9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:updated_time" content="2018-06-05T10:40:00.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS数据库常见操作">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1196725-28ecc7d82b8c6405.png?imageMogr2/auto-orient/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/06/18/iOS数据库常见操作/"/>
+
+
+
+
+
+  <title>iOS数据库常见操作 | WingChit</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/wingci"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WingChit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zero</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/18/iOS数据库常见操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wingci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WingChit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS数据库常见操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-18T16:31:15+08:00">
+                2016-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/06/18/iOS数据库常见操作/" class="leancloud_visitors" data-flag-title="iOS数据库常见操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,060
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h2 id="常见数据库"><a href="#常见数据库" class="headerlink" title="常见数据库"></a>常见数据库</h2><ul>
+<li>MangoDB</li>
+<li>Mysql</li>
+<li>Oracle</li>
+<li>Sqlite</li>
+</ul>
+<h2 id="常见数据库操作"><a href="#常见数据库操作" class="headerlink" title="常见数据库操作"></a>常见数据库操作</h2><p>存储管理，包括查询、插入、删除、更新、回滚、会话管理、锁管理等一系列数据库操作</p>
+<h2 id="Sqlite数据类型"><a href="#Sqlite数据类型" class="headerlink" title="Sqlite数据类型"></a>Sqlite数据类型</h2><ul>
+<li>NULL 值是空值</li>
+<li>INTEGER 值是整型</li>
+<li>REAL 值是浮点数</li>
+<li>TEXT 值是文本字符串</li>
+<li>BLOB 值是一个二进制类型</li>
+</ul>
+<h2 id="SQL语句大小写"><a href="#SQL语句大小写" class="headerlink" title="SQL语句大小写"></a>SQL语句大小写</h2><p>SQL只所以要求用大写，其实和SQL的执行有关，SQL也算是一种程序语言，而且比我们平时用的程序语言更高级，这个就不说了，大小写的问题只有一点，那就是，你写好的SQL语句，在执行的时候，是先转化为大写字母然后执行，如果小写转化大写，如果大写，那就可以省一个转化的时间</p>
+<h2 id="iOS-Sqlite-常用语句"><a href="#iOS-Sqlite-常用语句" class="headerlink" title="iOS Sqlite 常用语句"></a>iOS Sqlite 常用语句</h2><h3 id="创建表格"><a href="#创建表格" class="headerlink" title="创建表格"></a>创建表格</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> Student (<span class="built_in">number</span> <span class="built_in">integer</span> primary <span class="keyword">key</span> <span class="keyword">not</span> <span class="literal">NULL</span> , <span class="keyword">name</span> <span class="built_in">text</span> <span class="keyword">not</span> <span class="literal">NULL</span> , gender <span class="built_in">text</span> <span class="keyword">not</span> <span class="literal">NULL</span> , age <span class="built_in">integer</span> <span class="keyword">not</span> <span class="literal">NULL</span>) </span><br><span class="line"></span><br><span class="line">&lt;!<span class="comment">--PRIMARY KEY主键，AUTOINCREMENT 自动递增.--&gt;</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> t_student (<span class="keyword">id</span> <span class="built_in">integer</span> PRIMARY <span class="keyword">KEY</span> AUTOINCREMENT, <span class="keyword">name</span> <span class="built_in">text</span>, age <span class="built_in">integer</span>, score <span class="built_in">integer</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="删除表格"><a href="#删除表格" class="headerlink" title="删除表格"></a>删除表格</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> 表名</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> Student</span><br></pre></td></tr></table></figure>
+<h3 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式: <span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 旧表名 <span class="keyword">RENAME</span> <span class="keyword">TO</span> 新表名;</span><br><span class="line">重命名表SQL语句: <span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t_student <span class="keyword">RENAME</span> <span class="keyword">TO</span> t_person;</span><br></pre></td></tr></table></figure>
+<h3 id="数据表添加字段"><a href="#数据表添加字段" class="headerlink" title="数据表添加字段"></a>数据表添加字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式: <span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> 字段名 数据类型 限定符</span><br><span class="line">数据表添加字段<span class="keyword">SQL</span>语句: <span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t_student <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> address <span class="built_in">text</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Student (<span class="built_in">number</span> , <span class="keyword">name</span> , gender , age) <span class="keyword">values</span> (<span class="string">"%@"</span>,<span class="string">"%@"</span>,<span class="string">"%ld"</span>,<span class="string">"%ld"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t_student (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'liwx'</span>, <span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> Student <span class="keyword">where</span> age &gt; <span class="string">"%ld"</span></span><br></pre></td></tr></table></figure>
+<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> Student <span class="keyword">set</span> age = <span class="string">"%ld"</span> <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">"%@"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> t_student <span class="keyword">SET</span> age = <span class="number">19</span> <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">'liwx'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">分类：普通查询</span><br><span class="line">     统计查询</span><br><span class="line">     排序查询</span><br><span class="line">     limit分页查询</span><br><span class="line">     多表查询</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    DQL查询数据</span></span><br><span class="line"><span class="comment">    SELECT      -- 查询</span></span><br><span class="line"><span class="comment">    name, age   -- 查询的字段</span></span><br><span class="line"><span class="comment">    FROM        -- 从哪张表中查询</span></span><br><span class="line"><span class="comment">        MS_Person       -- 查询的表名</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询指定字段</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, age <span class="keyword">FROM</span> MS_Person;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询所有字段</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> MS_Person;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询 age &lt; 22 的记录的name, age字段</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, age <span class="keyword">FROM</span> MS_Person <span class="keyword">WHERE</span> age &lt; <span class="number">22</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询 age &lt; 22 的所有字段</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> MS_Person <span class="keyword">WHERE</span> age &lt; <span class="number">22</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询记录总数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> MS_Person;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询 age &lt; 22 的记录总数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> MS_Person <span class="keyword">WHERE</span> age &lt; <span class="number">22</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询最大的 age</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MAX</span>(age) <span class="keyword">FROM</span> MS_Person;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询最小的 age</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MIN</span>(age) <span class="keyword">FROM</span> MS_Person;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询所有记录的所有字段，根据 age 升序排序</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> MS_Person <span class="keyword">ORDER</span> <span class="keyword">BY</span> age;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询所有记录的所有字段， 根据 age 降序排序</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> MS_Person <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 使用多个字段排序，先按age降序排序，当age相同再根据height降序排序</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> MS_Person <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>,height <span class="keyword">DESC</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 返回指定的记录</span></span><br><span class="line"><span class="comment">-- LIMIT常用于分页</span></span><br><span class="line"><span class="comment">-- 0 表示跳过的3条</span></span><br><span class="line"><span class="comment">-- 2 表示获取2条</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> MS_Person <span class="keyword">LIMIT</span> <span class="number">3</span>, <span class="number">2</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 取出年龄最大的3条记录</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> MS_Person <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">3</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询是给字段取别名</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span> <span class="keyword">AS</span> JP_name, age <span class="keyword">AS</span> JF_age, height <span class="keyword">AS</span> JF_height <span class="keyword">FROM</span> MS_Person;</span><br></pre></td></tr></table></figure>
+<h3 id="事务回滚"><a href="#事务回滚" class="headerlink" title="事务回滚"></a>事务回滚</h3><h2 id="iOS基于C语言的数据库操作"><a href="#iOS基于C语言的数据库操作" class="headerlink" title="iOS基于C语言的数据库操作"></a>iOS基于C语言的数据库操作</h2><p>1.首先创建并打开数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 打开数据库</span><br><span class="line">- (void)openDatabase:(NSString *)SQLiteName &#123;</span><br><span class="line">    //1. 获取数据库存储路径</span><br><span class="line">    NSString *dbName = [SQLiteName documentDir];</span><br><span class="line">    //2. 打开数据库</span><br><span class="line">    // 如果数据库不存在，怎新建并打开一个数据库，否则直接打开</span><br><span class="line">    if (sqlite3_open(dbName.UTF8String, &amp;_db) != SQLITE_OK) &#123;</span><br><span class="line">        NSLog(@&quot;创建/打开数据库失败。&quot;);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //3. 创建表</span><br><span class="line">    if ([self createTable]) &#123;</span><br><span class="line">        NSLog(@&quot;创建表成功&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        NSLog(@&quot;创建表失败&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *  创建数据表</span><br><span class="line"> */</span><br><span class="line">- (BOOL)createTable &#123;</span><br><span class="line">    NSString *sql = @&quot;CREATE TABLE IF NOT EXISTS m_person (id integer PRIMARY KEY AUTOINCREMENT,name text,age integer)&quot;;</span><br><span class="line"></span><br><span class="line">    return [self execSql:sql];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.增删改<br>sqlite3_exec() 方法可以执行任何SQL语句，比如创表、更新、插入和删除操作。但是一般不用它执行查询语句，因为它不会返回查询到的数据。我们这里封装一个方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *  执行除查询以外的sql语句</span><br><span class="line"> */</span><br><span class="line">- (BOOL)execSql:(NSString *)sql &#123;</span><br><span class="line">    if (sqlite3_exec(_db, sql.UTF8String, nil, nil, nil) != SQLITE_OK) &#123;</span><br><span class="line">        return NO;</span><br><span class="line">    &#125;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.查询</p>
+<p>因为查询语句需要返回查询结果并提供给UI显示，所以是最麻烦的<br>查询用到的主要有以下三个方法：</p>
+<blockquote>
+<p>sqlite3_prepare_v2() : 准备数据库，并检查SQL语句是否合法<br>sqlite3_step() :一条一条获取数据，直到没有记录<br>sqlite3_coloum_xxx() : 获取对应类型的内容，从0开始。根据实际查询字段的属性，使用<br>sqlite3_column_字段类型 取得对应的内容即可。</p>
+</blockquote>
+<p>查询完要释放资源：</p>
+<blockquote>
+<p>sqlite3_finalize() : 释放stmt</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">*</span><br><span class="line"> *  返回指定sql查询语句运行的结果集</span><br><span class="line"> *</span><br><span class="line"> *  @param sql sql</span><br><span class="line"> *</span><br><span class="line"> *  @return 结果集</span><br><span class="line"> */</span><br><span class="line">- (NSArray *)execRecordSql:(NSString *)sql &#123;</span><br><span class="line">    // 1. 评估准备SQL语法是否正确</span><br><span class="line">    sqlite3_stmt *stmt = NULL;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     *  准备: 理解为预编译SQL语句, 检测里面是否有错误等等, 它可以提供性能</span><br><span class="line">     *</span><br><span class="line">     *  @param db   已经开打的数据库对象</span><br><span class="line">     *  @param cSQL 需要执行的SQL语句</span><br><span class="line">     *  @param -1   需要执行的SQL语句的长度, 传入-1系统自动计算</span><br><span class="line">     *  @param stmt 句柄，靠这个获取查询结果，当成缓冲区就好了</span><br><span class="line">     *  @param NULL  一般传NULL</span><br><span class="line">     *</span><br><span class="line">     *  @return</span><br><span class="line">     */</span><br><span class="line">    if (sqlite3_prepare_v2(_db, sql.UTF8String, -1, &amp;stmt, NULL) != SQLITE_OK) &#123;</span><br><span class="line">        NSLog(@&quot;准备数据失败&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    NSMutableArray *records = [NSMutableArray array];</span><br><span class="line">    // 2.查询数据</span><br><span class="line">    // sqlite3_step代表取出一条数据, 如果取到了数据就会返回SQLITE_ROW</span><br><span class="line">    while (sqlite3_step(stmt) == SQLITE_ROW) &#123;</span><br><span class="line">        // 3. 获取/显示查询结果</span><br><span class="line">        // sqlite3_column_xxx方法的第二个参数与sql语句中的字段顺寻一一对应（从0开始）</span><br><span class="line">        // 获取一条记录的数据</span><br><span class="line">        NSDictionary *dict = [self recordWithStmt:stmt];</span><br><span class="line">        [records addObject:dict];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 4. 释放句柄</span><br><span class="line">    sqlite3_finalize(stmt);</span><br><span class="line"></span><br><span class="line">    // 返回查询到的数据</span><br><span class="line">    return records;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 获取一条记录的值</span><br><span class="line"></span><br><span class="line"> - parameter stmt: 预编译好的SQL语句</span><br><span class="line"></span><br><span class="line"> - returns: 字典</span><br><span class="line"> */</span><br><span class="line">- (NSDictionary *)recordWithStmt:(sqlite3_stmt *)stmt &#123;</span><br><span class="line">    //1.拿到当前这条数据的所有列</span><br><span class="line">    int count = sqlite3_column_count(stmt);</span><br><span class="line">    // 定义字典存储查询到的数据</span><br><span class="line">    NSMutableDictionary *record = [[NSMutableDictionary alloc] init];</span><br><span class="line"></span><br><span class="line">    for (int index = 0; index &lt; count; index++) &#123;</span><br><span class="line">        // 2. 拿到每一列的名称</span><br><span class="line">        NSString *name = [NSString stringWithCString:sqlite3_column_name(stmt, index) encoding:NSUTF8StringEncoding];</span><br><span class="line">        NSLog(@&quot;%@&quot;,name);</span><br><span class="line">        // 3.拿到每一列的类型 SQLITE_INTEGER</span><br><span class="line">        int type = sqlite3_column_type(stmt, index);</span><br><span class="line"></span><br><span class="line">        switch (type) &#123;</span><br><span class="line">            case SQLITE_INTEGER://整形</span><br><span class="line">                [record setObject:@(sqlite3_column_int64(stmt, index)) forKey:name];</span><br><span class="line">                break;</span><br><span class="line">            case SQLITE_FLOAT:</span><br><span class="line">                [record setObject:@(sqlite3_column_double(stmt, index)) forKey:name];</span><br><span class="line">                break;</span><br><span class="line">            case SQLITE3_TEXT:</span><br><span class="line">                // 文本类型</span><br><span class="line">                [record setObject:[NSString stringWithUTF8String:sqlite3_column_text(stmt, index)] forKey:name];</span><br><span class="line">                break;</span><br><span class="line">            case SQLITE_NULL:</span><br><span class="line">                // 空类型</span><br><span class="line">                [record setObject:[[NSNull alloc]init] forKey:name];</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                // 二进制类型 SQLITE_BLOB</span><br><span class="line">                // 一般情况下, 不会往数据库中存储二进制数据</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return record;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="iOS基于FMDB框架的数据库操作"><a href="#iOS基于FMDB框架的数据库操作" class="headerlink" title="iOS基于FMDB框架的数据库操作"></a>iOS基于FMDB框架的数据库操作</h2><ul>
+<li>使用FMDB也必须加入 libsqlite3.dylib 依赖包。</li>
+<li>FMDB同时兼容ARC和非ARC工程，会自动根据工程配置来调整相关的内存管理代码。</li>
+<li>FMDB常用类：</li>
+</ul>
+<blockquote>
+<p>FMDatabase ： 一个单一的SQLite数据库，用于执行SQL语句。</p>
+</blockquote>
+<p>FMResultSet ：执行查询一个FMDatabase结果集，这个和Android的Cursor类似。</p>
+<blockquote>
+<p>FMDatabaseQueue ：在多个线程来执行查询和更新时会使用这个类。</p>
+</blockquote>
+<h3 id="FMDB创建数据库"><a href="#FMDB创建数据库" class="headerlink" title="FMDB创建数据库"></a>FMDB创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FMDatabase *db = [FMDatabase databaseWithPath:path];</span><br><span class="line">if (![db open]) &#123;</span><br><span class="line">NSLog(@&quot;数据库打开失败！&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="FMDB打开和关闭数据库"><a href="#FMDB打开和关闭数据库" class="headerlink" title="FMDB打开和关闭数据库"></a>FMDB打开和关闭数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[db open] ;</span><br><span class="line">[db close];</span><br></pre></td></tr></table></figure>
+<h3 id="FMDB增删改"><a href="#FMDB增删改" class="headerlink" title="FMDB增删改"></a>FMDB增删改</h3><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if ([db open]) &#123;  </span><br><span class="line">        NSString *sqlCreateTable =  [NSString stringWithFormat:@&quot;CREATE TABLE IF NOT EXISTS &apos;%@&apos; (&apos;%@&apos; INTEGER PRIMARY KEY AUTOINCREMENT, &apos;%@&apos; TEXT, &apos;%@&apos; INTEGER, &apos;%@&apos; TEXT)&quot;,TABLENAME,ID,NAME,AGE,ADDRESS];  </span><br><span class="line">        BOOL res = [db executeUpdate:sqlCreateTable];  </span><br><span class="line">        if (!res) &#123;  </span><br><span class="line">            NSLog(@&quot;error when creating db table&quot;);  </span><br><span class="line">        &#125; else &#123;  </span><br><span class="line">            NSLog(@&quot;success to creating db table&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">        [db close];  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">if ([db open]) &#123;  </span><br><span class="line">       NSString *insertSql1= [NSString stringWithFormat:  </span><br><span class="line">                              @&quot;INSERT INTO &apos;%@&apos; (&apos;%@&apos;, &apos;%@&apos;, &apos;%@&apos;) VALUES (&apos;%@&apos;, &apos;%@&apos;, &apos;%@&apos;)&quot;,  </span><br><span class="line">                              TABLENAME, NAME, AGE, ADDRESS, @&quot;张三&quot;, @&quot;13&quot;, @&quot;济南&quot;];  </span><br><span class="line">       BOOL res = [db executeUpdate:insertSql1];  </span><br><span class="line">       NSString *insertSql2 = [NSString stringWithFormat:  </span><br><span class="line">                               @&quot;INSERT INTO &apos;%@&apos; (&apos;%@&apos;, &apos;%@&apos;, &apos;%@&apos;) VALUES (&apos;%@&apos;, &apos;%@&apos;, &apos;%@&apos;)&quot;,  </span><br><span class="line">                               TABLENAME, NAME, AGE, ADDRESS, @&quot;李四&quot;, @&quot;12&quot;, @&quot;济南&quot;];  </span><br><span class="line">       BOOL res2 = [db executeUpdate:insertSql2];  </span><br><span class="line">         </span><br><span class="line">       if (!res) &#123;  </span><br><span class="line">           NSLog(@&quot;error when insert db table&quot;);  </span><br><span class="line">       &#125; else &#123;  </span><br><span class="line">           NSLog(@&quot;success to insert db table&quot;);  </span><br><span class="line">       &#125;  </span><br><span class="line">       [db close];  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if ([db open]) &#123;  </span><br><span class="line">        NSString *updateSql = [NSString stringWithFormat:  </span><br><span class="line">                               @&quot;UPDATE &apos;%@&apos; SET &apos;%@&apos; = &apos;%@&apos; WHERE &apos;%@&apos; = &apos;%@&apos;&quot;,  </span><br><span class="line">                               TABLENAME,   AGE,  @&quot;15&quot; ,AGE,  @&quot;13&quot;];  </span><br><span class="line">        BOOL res = [db executeUpdate:updateSql];  </span><br><span class="line">        if (!res) &#123;  </span><br><span class="line">            NSLog(@&quot;error when update db table&quot;);  </span><br><span class="line">        &#125; else &#123;  </span><br><span class="line">            NSLog(@&quot;success to update db table&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">        [db close];  </span><br><span class="line">  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">if ([db open]) &#123;  </span><br><span class="line">          </span><br><span class="line">        NSString *deleteSql = [NSString stringWithFormat:  </span><br><span class="line">                               @&quot;delete from %@ where %@ = &apos;%@&apos;&quot;,  </span><br><span class="line">                               TABLENAME, NAME, @&quot;张三&quot;];  </span><br><span class="line">        BOOL res = [db executeUpdate:deleteSql];  </span><br><span class="line">          </span><br><span class="line">        if (!res) &#123;  </span><br><span class="line">            NSLog(@&quot;error when delete db table&quot;);  </span><br><span class="line">        &#125; else &#123;  </span><br><span class="line">            NSLog(@&quot;success to delete db table&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">        [db close];  </span><br><span class="line">  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="FMDB查询"><a href="#FMDB查询" class="headerlink" title="FMDB查询"></a>FMDB查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">if ([db open]) &#123;  </span><br><span class="line">        NSString * sql = [NSString stringWithFormat:  </span><br><span class="line">                          @&quot;SELECT * FROM %@&quot;,TABLENAME];  </span><br><span class="line">        FMResultSet * rs = [db executeQuery:sql];  </span><br><span class="line">        while ([rs next]) &#123;  </span><br><span class="line">            int Id = [rs intForColumn:ID];  </span><br><span class="line">            NSString * name = [rs stringForColumn:NAME];  </span><br><span class="line">            NSString * age = [rs stringForColumn:AGE];  </span><br><span class="line">            NSString * address = [rs stringForColumn:ADDRESS];  </span><br><span class="line">            NSLog(@&quot;id = %d, name = %@, age = %@  address = %@&quot;, Id, name, age, address);  </span><br><span class="line">        &#125;  </span><br><span class="line">        [db close];  </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">FMDB的FMResultSet提供了多个方法来获取不同类型的数据：</span><br><span class="line">//FMResultSet has many methods to retrieve data in an </span><br><span class="line">//appropriate format:</span><br><span class="line">intForColumn:</span><br><span class="line">longForColumn:</span><br><span class="line">longLongIntForColumn:</span><br><span class="line">boolForColumn:</span><br><span class="line">doubleForColumn:</span><br><span class="line">stringForColumn:</span><br><span class="line">dateForColumn:</span><br><span class="line">dataForColumn:</span><br><span class="line">dataNoCopyForColumn:</span><br><span class="line">UTF8StringForColumnName:</span><br><span class="line">objectForColumnName:</span><br></pre></td></tr></table></figure>
+<h3 id="多线程操作数据库"><a href="#多线程操作数据库" class="headerlink" title="多线程操作数据库"></a>多线程操作数据库</h3><blockquote>
+<p>如果应用中使用了多线程操作数据库，那么就需要使用FMDatabaseQueue来保证线程安全了。 应用中不可在多个线程中共同使用一个FMDatabase对象操作数据库，这样会引起数据库数据混乱。 为了多线程操作数据库安全，FMDB使用了FMDatabaseQueue，使用FMDatabaseQueue很简单，首先用一个数据库文件地址来初使化FMDatabaseQueue，然后就可以将一个闭包(block)传入inDatabase方法中。 在闭包中操作数据库，而不直接参与FMDatabase的管理。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:database_path];  </span><br><span class="line">   dispatch_queue_t q1 = dispatch_queue_create(&quot;queue1&quot;, NULL);  </span><br><span class="line">   dispatch_queue_t q2 = dispatch_queue_create(&quot;queue2&quot;, NULL);  </span><br><span class="line">     </span><br><span class="line">   dispatch_async(q1, ^&#123;  </span><br><span class="line">       for (int i = 0; i &lt; 50; ++i) &#123;  </span><br><span class="line">           [queue inDatabase:^(FMDatabase *db2) &#123;  </span><br><span class="line">                 </span><br><span class="line">               NSString *insertSql1= [NSString stringWithFormat:  </span><br><span class="line">                                      @&quot;INSERT INTO &apos;%@&apos; (&apos;%@&apos;, &apos;%@&apos;, &apos;%@&apos;) VALUES (?, ?, ?)&quot;,  </span><br><span class="line">                                      TABLENAME, NAME, AGE, ADDRESS];  </span><br><span class="line">                 </span><br><span class="line">               NSString * name = [NSString stringWithFormat:@&quot;jack %d&quot;, i];  </span><br><span class="line">               NSString * age = [NSString stringWithFormat:@&quot;%d&quot;, 10+i];  </span><br><span class="line">                 </span><br><span class="line">                 </span><br><span class="line">               BOOL res = [db2 executeUpdate:insertSql1, name, age,@&quot;济南&quot;];  </span><br><span class="line">               if (!res) &#123;  </span><br><span class="line">                   NSLog(@&quot;error to inster data: %@&quot;, name);  </span><br><span class="line">               &#125; else &#123;  </span><br><span class="line">                   NSLog(@&quot;succ to inster data: %@&quot;, name);  </span><br><span class="line">               &#125;  </span><br><span class="line">           &#125;];  </span><br><span class="line">       &#125;  </span><br><span class="line">   &#125;);  </span><br><span class="line">     </span><br><span class="line">   dispatch_async(q2, ^&#123;  </span><br><span class="line">       for (int i = 0; i &lt; 50; ++i) &#123;  </span><br><span class="line">           [queue inDatabase:^(FMDatabase *db2) &#123;  </span><br><span class="line">               NSString *insertSql2= [NSString stringWithFormat:  </span><br><span class="line">                                      @&quot;INSERT INTO &apos;%@&apos; (&apos;%@&apos;, &apos;%@&apos;, &apos;%@&apos;) VALUES (?, ?, ?)&quot;,  </span><br><span class="line">                                      TABLENAME, NAME, AGE, ADDRESS];  </span><br><span class="line">                 </span><br><span class="line">               NSString * name = [NSString stringWithFormat:@&quot;lilei %d&quot;, i];  </span><br><span class="line">               NSString * age = [NSString stringWithFormat:@&quot;%d&quot;, 10+i];  </span><br><span class="line">                 </span><br><span class="line">               BOOL res = [db2 executeUpdate:insertSql2, name, age,@&quot;北京&quot;];  </span><br><span class="line">               if (!res) &#123;  </span><br><span class="line">                   NSLog(@&quot;error to inster data: %@&quot;, name);  </span><br><span class="line">               &#125; else &#123;  </span><br><span class="line">                   NSLog(@&quot;succ to inster data: %@&quot;, name);  </span><br><span class="line">               &#125;  </span><br><span class="line">           &#125;];  </span><br><span class="line">       &#125;  </span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="iOS基于CoreData的数据库操作"><a href="#iOS基于CoreData的数据库操作" class="headerlink" title="iOS基于CoreData的数据库操作"></a>iOS基于CoreData的数据库操作</h2><h3 id="CoreData介绍"><a href="#CoreData介绍" class="headerlink" title="CoreData介绍"></a>CoreData介绍</h3><p>CoreData是一门功能强大的数据持久化技术，位于SQLite数据库之上，它避免了SQL的复杂性，能让我们以更自然的方式与数据库进行交互。CoreData提供数据–OC对象映射关系来实现数据与对象管理，这样无需任何SQL语句就能操作他们。<br>CoreData数据持久化框架是Cocoa API的一部分,⾸次在iOS5 版本的系统中出现,它允许按照实体-属性-值模型组织数据,并以XML、⼆进制文件或者SQLite数据⽂件的格式持久化数据</p>
+<h3 id="CoreData与SQLite进行对比"><a href="#CoreData与SQLite进行对比" class="headerlink" title="CoreData与SQLite进行对比"></a>CoreData与SQLite进行对比</h3><p>SQLite</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、基于C接口，需要使用SQL语句，代码繁琐</span><br><span class="line">2、在处理大量数据时，表关系更直观</span><br><span class="line">3、在OC中不是可视化，不易理解</span><br></pre></td></tr></table></figure>
+<p>CoreData</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、可视化，且具有undo/redo能力</span><br><span class="line">2、可以实现多种文件格式：</span><br><span class="line">    * NSSQLiteStoreType</span><br><span class="line">    * NSBinaryStoreType</span><br><span class="line">    * NSInMemoryStoreType</span><br><span class="line">    * NSXMLStoreTyp</span><br><span class="line">3、苹果官方API支持，与iOS结合更紧密</span><br></pre></td></tr></table></figure>
+<h3 id="CoreData核心类与结构"><a href="#CoreData核心类与结构" class="headerlink" title="CoreData核心类与结构"></a>CoreData核心类与结构</h3><ul>
+<li>NSManagedObjectContext(数据上下文)</li>
+</ul>
+<p>对象管理上下文，负责数据的实际操作(重要)<br>作用：插入数据，查询数据，删除数据，更新数据</p>
+<ul>
+<li>NSPersistentStoreCoordinator(持久化存储助理)</li>
+</ul>
+<p>相当于数据库的连接器<br>作用：设置数据存储的名字，位置，存储方式，和存储时机</p>
+<ul>
+<li>NSManagedObjectModel(数据模型)</li>
+</ul>
+<p>数据库所有表格或数据结构，包含各实体的定义信息<br>作用：添加实体的属性，建立属性之间的关系<br>操作方法：视图编辑器，或代码</p>
+<ul>
+<li>NSManagedObject(被管理的数据记录)</li>
+</ul>
+<p>数据库中的表格记录</p>
+<ul>
+<li>NSEntityDescription(实体结构)</li>
+</ul>
+<p>相当于表格结构</p>
+<ul>
+<li><p>NSFetchRequest(数据请求)<br>相当于查询语句</p>
+</li>
+<li><p>后缀为.xcdatamodeld的包</p>
+</li>
+</ul>
+<p>里面是.xcdatamodel文件，用数据模型编辑器编辑<br>编译后为.momd或.mom文件</p>
+<p>各类之间关系图<br><img src="https://upload-images.jianshu.io/upload_images/1196725-28ecc7d82b8c6405.png?imageMogr2/auto-orient/" alt=""></p>
+<h3 id="CoreData增删改查排"><a href="#CoreData增删改查排" class="headerlink" title="CoreData增删改查排"></a>CoreData增删改查排</h3><ul>
+<li>写入数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 1.根据Entity名称和NSManagedObjectContext获取一个新的继承于NSManagedObject的子类Student</span><br><span class="line">    Student * student = [NSEntityDescription  insertNewObjectForEntityForName:@&quot;Student&quot;  inManagedObjectContext:_context];</span><br><span class="line">    </span><br><span class="line">    //2.根据表Student中的键值，给NSManagedObject对象赋值</span><br><span class="line">    student.name = [NSString stringWithFormat:@&quot;Mr-%d&quot;,arc4random()%100];</span><br><span class="line">    student.age = arc4random()%20;</span><br><span class="line">    student.sex = arc4random()%2 == 0 ?  @&quot;美女&quot; : @&quot;帅哥&quot; ;</span><br><span class="line">    student.height = arc4random()%180;</span><br><span class="line">    student.number = arc4random()%100</span><br><span class="line"></span><br><span class="line">    //   3.保存插入的数据</span><br><span class="line">    NSError *error = nil;</span><br><span class="line">    if ([_context save:&amp;error]) &#123;</span><br><span class="line">        [self alertViewWithMessage:@&quot;数据插入到数据库成功&quot;];</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        [self alertViewWithMessage:[NSString stringWithFormat:@&quot;数据插入到数据库失败, %@&quot;,error]];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (void)deleteData&#123;</span><br><span class="line">   </span><br><span class="line">    //创建删除请求</span><br><span class="line">    NSFetchRequest *deleRequest = [NSFetchRequest fetchRequestWithEntityName:@&quot;Student&quot;];</span><br><span class="line">    </span><br><span class="line">    //删除条件</span><br><span class="line">    NSPredicate *pre = [NSPredicate predicateWithFormat:@&quot;age &lt; %d&quot;, 10];</span><br><span class="line">    deleRequest.predicate = pre;</span><br><span class="line">   </span><br><span class="line">    //返回需要删除的对象数组</span><br><span class="line">    NSArray *deleArray = [_context executeFetchRequest:deleRequest error:nil];</span><br><span class="line">    </span><br><span class="line">    //从数据库中删除</span><br><span class="line">    for (Student *stu in deleArray) &#123;</span><br><span class="line">        [_context deleteObject:stu];</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    NSError *error = nil;</span><br><span class="line">    //保存--记住保存</span><br><span class="line">    if ([_context save:&amp;error]) &#123;</span><br><span class="line">        [self alertViewWithMessage:@&quot;删除 age &lt; 10 的数据&quot;];</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        NSLog(@&quot;删除数据失败, %@&quot;, error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新修改</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//更新，修改</span><br><span class="line">- (void)updateData&#123;</span><br><span class="line">    </span><br><span class="line">    //创建查询请求</span><br><span class="line">    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@&quot;Student&quot;];</span><br><span class="line">    NSPredicate *pre = [NSPredicate predicateWithFormat:@&quot;sex = %@&quot;, @&quot;帅哥&quot;];</span><br><span class="line">    request.predicate = pre;</span><br><span class="line">    </span><br><span class="line">    //发送请求</span><br><span class="line">    NSArray *resArray = [_context executeFetchRequest:request error:nil];</span><br><span class="line">    </span><br><span class="line">    //修改</span><br><span class="line">    for (Student *stu in resArray) &#123;</span><br><span class="line">        stu.name = @&quot;且行且珍惜_iOS&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    //保存</span><br><span class="line">    NSError *error = nil;</span><br><span class="line">    if ([_context save:&amp;error]) &#123;</span><br><span class="line">        [self alertViewWithMessage:@&quot;更新所有帅哥的的名字为“且行且珍惜_iOS”&quot;];</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        NSLog(@&quot;更新数据失败, %@&quot;, error);</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>读取查询</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">//读取查询</span><br><span class="line">- (void)readData&#123;</span><br><span class="line">    </span><br><span class="line">    /* 谓词的条件指令</span><br><span class="line">     1.比较运算符 &gt; 、&lt; 、== 、&gt;= 、&lt;= 、!=</span><br><span class="line">     例：@&quot;number &gt;= 99&quot;</span><br><span class="line">     </span><br><span class="line">     2.范围运算符：IN 、BETWEEN</span><br><span class="line">     例：@&quot;number BETWEEN &#123;1,5&#125;&quot;</span><br><span class="line">     @&quot;address IN &#123;&apos;shanghai&apos;,&apos;nanjing&apos;&#125;&quot;</span><br><span class="line">     </span><br><span class="line">     3.字符串本身:SELF</span><br><span class="line">     例：@&quot;SELF == &apos;APPLE&apos;&quot;</span><br><span class="line">     </span><br><span class="line">     4.字符串相关：BEGINSWITH、ENDSWITH、CONTAINS</span><br><span class="line">     例：  @&quot;name CONTAIN[cd] &apos;ang&apos;&quot;  //包含某个字符串</span><br><span class="line">     @&quot;name BEGINSWITH[c] &apos;sh&apos;&quot;    //以某个字符串开头</span><br><span class="line">     @&quot;name ENDSWITH[d] &apos;ang&apos;&quot;    //以某个字符串结束</span><br><span class="line">     </span><br><span class="line">     5.通配符：LIKE</span><br><span class="line">     例：@&quot;name LIKE[cd] &apos;*er*&apos;&quot;   //*代表通配符,Like也接受[cd].</span><br><span class="line">     @&quot;name LIKE[cd] &apos;???er*&apos;&quot;</span><br><span class="line">     </span><br><span class="line">     *注*: 星号 &quot;*&quot; : 代表0个或多个字符</span><br><span class="line">     问号 &quot;?&quot; : 代表一个字符</span><br><span class="line">     </span><br><span class="line">     6.正则表达式：MATCHES</span><br><span class="line">     例：NSString *regex = @&quot;^A.+e$&quot;; //以A开头，e结尾</span><br><span class="line">     @&quot;name MATCHES %@&quot;,regex</span><br><span class="line">     </span><br><span class="line">     注:[c]*不区分大小写 , [d]不区分发音符号即没有重音符号, [cd]既不区分大小写，也不区分发音符号。</span><br><span class="line">     </span><br><span class="line">     7. 合计操作</span><br><span class="line">     ANY，SOME：指定下列表达式中的任意元素。比如，ANY children.age &lt; 18。</span><br><span class="line">     ALL：指定下列表达式中的所有元素。比如，ALL children.age &lt; 18。</span><br><span class="line">     NONE：指定下列表达式中没有的元素。比如，NONE children.age &lt; 18。它在逻辑上等于NOT (ANY ...)。</span><br><span class="line">     IN：等于SQL的IN操作，左边的表达必须出现在右边指定的集合中。比如，name IN &#123; &apos;Ben&apos;, &apos;Melissa&apos;, &apos;Nick&apos; &#125;。</span><br><span class="line">     </span><br><span class="line">     提示:</span><br><span class="line">     1. 谓词中的匹配指令关键字通常使用大写字母</span><br><span class="line">     2. 谓词中可以使用格式字符串</span><br><span class="line">     3. 如果通过对象的key</span><br><span class="line">     path指定匹配条件，需要使用%K</span><br><span class="line">     </span><br><span class="line">     */</span><br><span class="line">    </span><br><span class="line">    //创建查询请求</span><br><span class="line">    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@&quot;Student&quot;];</span><br><span class="line">    //查询条件</span><br><span class="line">    NSPredicate *pre = [NSPredicate predicateWithFormat:@&quot;sex = %@&quot;, @&quot;美女&quot;];</span><br><span class="line">    request.predicate = pre;</span><br><span class="line"> </span><br><span class="line">    // 从第几页开始显示</span><br><span class="line">    // 通过这个属性实现分页</span><br><span class="line">    //request.fetchOffset = 0;</span><br><span class="line">    // 每页显示多少条数据</span><br><span class="line">    //request.fetchLimit = 6;</span><br><span class="line"></span><br><span class="line">    //发送查询请求</span><br><span class="line">    NSArray *resArray = [_context executeFetchRequest:request error:nil];</span><br><span class="line">    </span><br><span class="line">    [self alertViewWithMessage:@&quot;查询所有的美女&quot;];  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>排序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//排序</span><br><span class="line">- (void)sort&#123;</span><br><span class="line">    //创建排序请求</span><br><span class="line">    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@&quot;Student&quot;];</span><br><span class="line">    //实例化排序对象</span><br><span class="line">    NSSortDescriptor *ageSort = [NSSortDescriptor sortDescriptorWithKey:@&quot;age&quot;ascending:YES];</span><br><span class="line">    NSSortDescriptor *numberSort = [NSSortDescriptor sortDescriptorWithKey:@&quot;number&quot;ascending:YES];</span><br><span class="line">    request.sortDescriptors = @[ageSort,numberSort];</span><br><span class="line">    //发送请求</span><br><span class="line">    NSError *error = nil;</span><br><span class="line">    NSArray *resArray = [_context executeFetchRequest:request error:&amp;error];</span><br><span class="line">    if (error == nil) &#123;</span><br><span class="line">        [self alertViewWithMessage:@&quot;按照age和number排序&quot;];</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        NSLog(@&quot;排序失败, %@&quot;, error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他应用"><a href="#其他应用" class="headerlink" title="其他应用"></a>其他应用</h2><p><img src="https://upload-images.jianshu.io/upload_images/795875-c5426a9c42eedd9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/19/Clarles常见使用/" rel="next" title="Clarles常见使用">
+                <i class="fa fa-chevron-left"></i> Clarles常见使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/18/iOS网络开发/" rel="prev" title="iOS网络基础">
+                iOS网络基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wingci</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见数据库"><span class="nav-number">1.</span> <span class="nav-text">常见数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见数据库操作"><span class="nav-number">2.</span> <span class="nav-text">常见数据库操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sqlite数据类型"><span class="nav-number">3.</span> <span class="nav-text">Sqlite数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL语句大小写"><span class="nav-number">4.</span> <span class="nav-text">SQL语句大小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-Sqlite-常用语句"><span class="nav-number">5.</span> <span class="nav-text">iOS Sqlite 常用语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建表格"><span class="nav-number">5.1.</span> <span class="nav-text">创建表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除表格"><span class="nav-number">5.2.</span> <span class="nav-text">删除表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改表名"><span class="nav-number">5.3.</span> <span class="nav-text">修改表名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据表添加字段"><span class="nav-number">5.4.</span> <span class="nav-text">数据表添加字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增"><span class="nav-number">5.5.</span> <span class="nav-text">增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删"><span class="nav-number">5.6.</span> <span class="nav-text">删</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改"><span class="nav-number">5.7.</span> <span class="nav-text">改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查"><span class="nav-number">5.8.</span> <span class="nav-text">查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务回滚"><span class="nav-number">5.9.</span> <span class="nav-text">事务回滚</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS基于C语言的数据库操作"><span class="nav-number">6.</span> <span class="nav-text">iOS基于C语言的数据库操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS基于FMDB框架的数据库操作"><span class="nav-number">7.</span> <span class="nav-text">iOS基于FMDB框架的数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FMDB创建数据库"><span class="nav-number">7.1.</span> <span class="nav-text">FMDB创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FMDB打开和关闭数据库"><span class="nav-number">7.2.</span> <span class="nav-text">FMDB打开和关闭数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FMDB增删改"><span class="nav-number">7.3.</span> <span class="nav-text">FMDB增删改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建表"><span class="nav-number">7.3.1.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加数据"><span class="nav-number">7.3.2.</span> <span class="nav-text">添加数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改数据"><span class="nav-number">7.3.3.</span> <span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据"><span class="nav-number">7.3.4.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FMDB查询"><span class="nav-number">7.4.</span> <span class="nav-text">FMDB查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程操作数据库"><span class="nav-number">7.5.</span> <span class="nav-text">多线程操作数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS基于CoreData的数据库操作"><span class="nav-number">8.</span> <span class="nav-text">iOS基于CoreData的数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreData介绍"><span class="nav-number">8.1.</span> <span class="nav-text">CoreData介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreData与SQLite进行对比"><span class="nav-number">8.2.</span> <span class="nav-text">CoreData与SQLite进行对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreData核心类与结构"><span class="nav-number">8.3.</span> <span class="nav-text">CoreData核心类与结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreData增删改查排"><span class="nav-number">8.4.</span> <span class="nav-text">CoreData增删改查排</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他应用"><span class="nav-number">9.</span> <span class="nav-text">其他应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wingci</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">38.1k</span>
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+<div class="powered-by"></div>
+<span class="post-count">博客全站共38.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("YVk67ES9JxH4F81acMEg0yCb-gzGzoHsz", "ez7a1paTd3EuT97I2TlO9lFS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
