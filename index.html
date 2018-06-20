@@ -1776,7 +1776,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/18/iOS常用C语言函数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/12/ReactiveCocoa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wingci">
@@ -1795,7 +1795,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/18/iOS常用C语言函数/" itemprop="url">iOS常用C语言函数 </a></h1>
+                <a class="post-title-link" href="/2017/03/12/ReactiveCocoa/" itemprop="url">ReactiveCocoa（转）</a></h1>
         
 
         <div class="post-meta">
@@ -1807,8 +1807,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-18T16:41:15+08:00">
-                2016-09-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-12T16:31:15+08:00">
+                2017-03-12
               </time>
             
 
@@ -1830,8 +1830,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C函数/" itemprop="url" rel="index">
-                    <span itemprop="name">C函数</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -1847,7 +1847,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
           
           
-             <span id="/2016/09/18/iOS常用C语言函数/" class="leancloud_visitors" data-flag-title="iOS常用C语言函数 ">
+             <span id="/2017/03/12/ReactiveCocoa/" class="leancloud_visitors" data-flag-title="ReactiveCocoa（转）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1873,7 +1873,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  319
+                  1,661
                 </span>
               
 
@@ -1889,7 +1889,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  7
                 </span>
               
             </div>
@@ -1911,14 +1911,39 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
       
         
-          <hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/09/18/iOS常用C语言函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <hr>
+<h2 id="基本理解"><a href="#基本理解" class="headerlink" title="基本理解"></a>基本理解</h2><p>ReactiveCocoa（其简称为 RAC）是由 Github 开源的一个应用于 iOS 和 OS X 开发的新框架。RAC 具有函数式编程和响应式编程的特性。它主要吸取了 .Net 的 Reactive Extensions 的设计和实现。</p>
+<h2 id="ReactiveCocoa-试图解决什么问题"><a href="#ReactiveCocoa-试图解决什么问题" class="headerlink" title="ReactiveCocoa 试图解决什么问题"></a>ReactiveCocoa 试图解决什么问题</h2><p>经过一段时间的研究，我认为 ReactiveCocoa 试图解决以下 3 个问题：</p>
+<ol>
+<li>传统 iOS 开发过程中，状态以及状态之间依赖过多的问题</li>
+<li>传统 MVC 架构的问题：Controller 比较复杂，可测试性差</li>
+<li>提供统一的消息传递机制</li>
+</ol>
+<h3 id="传统-iOS-开发过程中，状态以及状态之间依赖过多的问题"><a href="#传统-iOS-开发过程中，状态以及状态之间依赖过多的问题" class="headerlink" title="传统 iOS 开发过程中，状态以及状态之间依赖过多的问题"></a>传统 iOS 开发过程中，状态以及状态之间依赖过多的问题</h3><p>我们在开发 iOS 应用时，一个界面元素的状态很可能受多个其它界面元素或后台状态的影响。</p>
+<p>例如，在用户帐户的登录界面，通常会有 2 个输入框（分别输入帐号和密码）和一个登录按钮。如果我们要加入一个限制条件：当用户输入完帐号和密码，并且登录的网络请求还未发出时，确定按钮才可以点击。通常情况下，我们需要监听这两个输入框的状态变化以及登录的网络请求状态，然后修改另一个控件的enabled状态。</p>
+<p>传统的写法如下（该示例代码修改自 ReactiveCocoa 官网 ） ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">static void *ObservationContext = &amp;ObservationContext;</span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    [LoginManager.sharedManager addObserver:self</span><br><span class="line">                                 forKeyPath:@&quot;loggingIn&quot;</span><br><span class="line">                                    options:NSKeyValueObservingOptionInitial</span><br><span class="line">                                    context:&amp;ObservationContext];</span><br><span class="line">    [self.usernameTextField addTarget:self action:@selector(updateLogInButton)</span><br><span class="line">                     forControlEvents:UIControlEventEditingChanged];</span><br><span class="line">    [self.passwordTextField addTarget:self action:@selector(updateLogInButton)</span><br><span class="line">                     forControlEvents:UIControlEventEditingChanged];</span><br><span class="line">&#125;</span><br><span class="line">- (void)updateLogInButton &#123;</span><br><span class="line">    BOOL textFieldsNonEmpty = self.usernameTextField.text.length &gt; 0 &amp;&amp; self.passwordTextField.text.length &gt; 0;</span><br><span class="line">    BOOL readyToLogIn = !LoginManager.sharedManager.isLoggingIn &amp;&amp; !self.loggedIn;</span><br><span class="line">    self.logInButton.enabled = textFieldsNonEmpty &amp;&amp; readyToLogIn;</span><br><span class="line">&#125;</span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object</span><br><span class="line">                        change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">    if (context == ObservationContext) &#123;</span><br><span class="line">        [self updateLogInButton];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        [super observeValueForKeyPath:keyPath ofObject:object</span><br><span class="line">                               change:change context:context];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>RAC 通过引入信号（Signal）的概念，来代替传统 iOS 开发中对于控件状态变化检查的代理（delegate）模式或 target-action 模式。因为 RAC 的信号是可以组合（combine）的，所以可以轻松地构造出另一个新的信号出来，然后将按钮的enabled状态与新的信号绑定。如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">RAC(self.logInButton, enabled) = [RACSignal</span><br><span class="line">    combineLatest:@[</span><br><span class="line">        self.usernameTextField.rac_textSignal,</span><br><span class="line">        self.passwordTextField.rac_textSignal,</span><br><span class="line">        RACObserve(LoginManager.sharedManager, loggingIn),</span><br><span class="line">        RACObserve(self, loggedIn)</span><br><span class="line">    ] reduce:^(NSString *username, NSString *password, NSNumber *loggingIn, NSNumber *loggedIn) &#123;</span><br><span class="line">        return @(username.length &gt; 0 &amp;&amp; password.length &gt; 0 &amp;&amp; !loggingIn.boolValue &amp;&amp; !loggedIn.boolValue);</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<p>可以看到，在引入 RAC 之后，以前散落在action-target或 KVO 的回调函数中的判断逻辑被统一到了一起，从而使得登录按钮的enabled状态被更加清晰地表达了出来。</p>
+<p>除了组合（combine）之外，RAC 的信号还支持链式（chaining）和过滤（filter)，以方便将信号进行进一步处理。</p>
+<h2 id="试图解决-MVC-框架的问题"><a href="#试图解决-MVC-框架的问题" class="headerlink" title="试图解决 MVC 框架的问题"></a>试图解决 MVC 框架的问题</h2><p>对于传统的 Model-View-Controller 的框架，Controller 很容易变得比较庞大和复杂。由于 Controller 承担了 Model 和 View 之间的桥梁作用，所以 Controller 常常与对应的 View 和 Model 的耦合度非常高，这同时也造成对其做单元测试非常不容易，对 iOS 工程的单元测试大多都只在一些工具类或与界面无关的逻辑类中进行。</p>
+<p>RAC 的信号机制很容易将某一个 Model 变量的变化与界面关联，所以非常容易应用 Model-View-ViewModel 框架。通过引入 ViewModel 层，然后用 RAC 将 ViewModel 与 View 关联，View 层的变化可以直接响应 ViewModel 层的变化，这使得 Controller 变得更加简单，由于 View 不再与 Model 绑定，也增加了 View 的可重用性。</p>
+<p>因为引入了 ViewModel 层，所以单元测试可以在 ViewModel 层进行，iOS 工程的可测试性也大大增强了。InfoQ 也曾撰文介绍过 MVVM：《MVVM 启示录》 。</p>
+<h2 id="统一消息传递机制"><a href="#统一消息传递机制" class="headerlink" title="统一消息传递机制"></a>统一消息传递机制</h2><p>iOS 开发中有着各种消息传递机制，包括 KVO、Notification、delegation、block 以及 target-action 方式。各种消息传递机制使得开发者在做具体选择时感到困惑，例如在 objc.io 上就有 专门撰，介绍各种消息传递机制之间的差异性。</p>
+<p>RAC 将传统的 UI 控件事件进行了封装，使得以上各种消息传递机制都可以用 RAC 来完成。示例代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// KVO</span><br><span class="line">[RACObserve(self, username) subscribeNext:^(id x) &#123;</span><br><span class="line">    NSLog(@&quot; 成员变量 username 被修改成了：%@&quot;, x);</span><br><span class="line">&#125;];</span><br><span class="line">// target-action</span><br><span class="line">self.button.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) &#123;</span><br><span class="line">    NSLog(@&quot; 按钮被点击 &quot;);</span><br><span class="line">    return [RACSignal empty];</span><br><span class="line">&#125;];</span><br><span class="line">// Notification</span><br><span class="line">[[[NSNotificationCenter defaultCenter] </span><br><span class="line">    rac_addObserverForName:UIKeyboardDidChangeFrameNotification         </span><br><span class="line">                    object:nil] </span><br><span class="line">    subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot; 键盘 Frame 改变 &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">];</span><br><span class="line">// Delegate</span><br><span class="line">[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) &#123;</span><br><span class="line">    debugLog(@&quot;viewWillAppear 方法被调用 %@&quot;, x);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>RAC 的RACSignal 类也提供了createSignal方法来让用户创建自定义的信号，如下代码创建了一个下载指定网站内容的信号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(RACSignal *)urlResults &#123;</span><br><span class="line">    return [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        NSError *error;</span><br><span class="line">        NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:@&quot;http://www.devtang.com&quot;]</span><br><span class="line">                                                    encoding:NSUTF8StringEncoding</span><br><span class="line">                                                       error:&amp;error];</span><br><span class="line">        NSLog(@&quot;download&quot;);</span><br><span class="line">        if (!result) &#123;</span><br><span class="line">            [subscriber sendError:error];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [subscriber sendNext:result];</span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">        &#125;</span><br><span class="line">        return [RACDisposable disposableWithBlock:^&#123;</span><br><span class="line">            NSLog(@&quot;clean up&quot;);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如何使用-ReactiveCocoa"><a href="#如何使用-ReactiveCocoa" class="headerlink" title="如何使用 ReactiveCocoa"></a>如何使用 ReactiveCocoa</h2><p>ReactiveCocoa 可以在 iOS 和 OS X 的应用开发中使用，对于 iOS 开发者，可以将 RAC 源码 下载编译后，使用编译好的libReactiveCocoa-iOS.a文件。</p>
+<p>开发者也可以用 CocoaPods 来设置目标工程对 ReactiveCocoa 的依赖，只需要编辑 Podfile 文件，增加如下内容即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;ReactiveCocoa&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="ReactiveCocoa-的特点"><a href="#ReactiveCocoa-的特点" class="headerlink" title="ReactiveCocoa 的特点"></a>ReactiveCocoa 的特点</h2><p>RAC 在应用中大量使用了 block，由于 Objective-C 语言的内存管理是基于 引用计数 的，为了避免循环引用问题，在 block 中如果要引用 self，需要使用@weakify(self)和@strongify(self)来避免强引用。另外，在使用时应该注意 block 的嵌套层数，不恰当的滥用多层嵌套 block 可能给程序的可维护性带来灾难。</p>
+<p>RAC 的编程方式和传统的 MVC 方式差异巨大，所以需要较长的学习时间。并且，业界内对于 RAC 并没有广泛应用，这造成可供参考的项目和教程比较欠缺。<br>另外，RAC 项目本身也还在快速演进当中，1.x 版本和 2.x 版本 API 改动了许多，3.0 版本也正在快速开发中，对它的使用也需要考虑后期的升级维护问题。</p>
+<p>作为一个 iOS 开发领域的新开源框架，ReactiveCocoa 带来了函数式编程和响应式编程的思想，值得大家关注并且学习。</p>
+
+          
         
       
     </div>
@@ -1965,7 +1990,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/18/iOS常见算法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/19/iOS的回调/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wingci">
@@ -1984,7 +2009,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/18/iOS常见算法/" itemprop="url">iOS常见算法以及应用</a></h1>
+                <a class="post-title-link" href="/2016/10/19/iOS的回调/" itemprop="url">iOS几种回调方式</a></h1>
         
 
         <div class="post-meta">
@@ -1996,8 +2021,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-18T16:40:15+08:00">
-                2016-09-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-19T18:41:15+08:00">
+                2016-10-19
               </time>
             
 
@@ -2019,8 +2044,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS算法/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS算法</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -2036,7 +2061,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
           
           
-             <span id="/2016/09/18/iOS常见算法/" class="leancloud_visitors" data-flag-title="iOS常见算法以及应用">
+             <span id="/2016/10/19/iOS的回调/" class="leancloud_visitors" data-flag-title="iOS几种回调方式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2062,7 +2087,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,656
+                  2,068
                 </span>
               
 
@@ -2103,7 +2128,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
           <hr>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/09/18/iOS常见算法/#more" rel="contents">
+            <a class="btn" href="/2016/10/19/iOS的回调/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2145,7 +2170,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2191,7 +2216,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2213,7 +2238,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2265,7 +2290,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">43.3k</span>
+    <span title="Site words total count">52.3k</span>
   
 </div>
 
@@ -2291,7 +2316,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
 <div class="theme-info">
 <div class="powered-by"></div>
-<span class="post-count">博客全站共43.3k字</span>
+<span class="post-count">博客全站共52.3k字</span>
 </div>
 
         
