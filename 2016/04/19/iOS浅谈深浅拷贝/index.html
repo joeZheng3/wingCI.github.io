@@ -94,21 +94,18 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
 
 
-<meta name="description" content="浅拷贝  浅拷贝就是对内存地址的复制，让目标对象指针和源对象指向同一片内存空间，当内存销毁的时候，指向这片内存的几个指针需要重新定义才可以使用，要不然会成为野指针。    浅拷贝就是拷贝指向原来对象的指针，使原对象的引用计数+1，可以理解为创建了一个指向原对象的新指针而已，并没有创建一个全新的对象。 深拷贝深拷贝是指拷贝对象的具体内容，而内存地址是自主分配的，拷贝结束之后，两个对象虽然存的值是相">
 <meta name="keywords" content="iOS内存管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS浅谈深浅拷贝">
 <meta property="og:url" content="http://yoursite.com/2016/04/19/iOS浅谈深浅拷贝/index.html">
 <meta property="og:site_name" content="WingChit">
-<meta property="og:description" content="浅拷贝  浅拷贝就是对内存地址的复制，让目标对象指针和源对象指向同一片内存空间，当内存销毁的时候，指向这片内存的几个指针需要重新定义才可以使用，要不然会成为野指针。    浅拷贝就是拷贝指向原来对象的指针，使原对象的引用计数+1，可以理解为创建了一个指向原对象的新指针而已，并没有创建一个全新的对象。 深拷贝深拷贝是指拷贝对象的具体内容，而内存地址是自主分配的，拷贝结束之后，两个对象虽然存的值是相">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/1118933/201707/1118933-20170720163840911-1419287373.png">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/1118933/201707/1118933-20170720164333411-1953051982.png">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/1118933/201707/1118933-20170720203748536-592203434.png">
-<meta property="og:updated_time" content="2018-06-20T05:59:19.496Z">
+<meta property="og:updated_time" content="2018-06-20T07:03:14.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS浅谈深浅拷贝">
-<meta name="twitter:description" content="浅拷贝  浅拷贝就是对内存地址的复制，让目标对象指针和源对象指向同一片内存空间，当内存销毁的时候，指向这片内存的几个指针需要重新定义才可以使用，要不然会成为野指针。    浅拷贝就是拷贝指向原来对象的指针，使原对象的引用计数+1，可以理解为创建了一个指向原对象的新指针而已，并没有创建一个全新的对象。 深拷贝深拷贝是指拷贝对象的具体内容，而内存地址是自主分配的，拷贝结束之后，两个对象虽然存的值是相">
 <meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1118933/201707/1118933-20170720163840911-1419287373.png">
 
 
@@ -405,6 +402,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
       
         <hr>
+<a id="more"></a>
 <h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>  浅拷贝就是对内存地址的复制，让目标对象指针和源对象指向同一片内存空间，当内存销毁的时候，指向这片内存的几个指针需要重新定义才可以使用，要不然会成为野指针。</p>
 <p><img src="https://images2015.cnblogs.com/blog/1118933/201707/1118933-20170720163840911-1419287373.png" alt=""></p>
 <p>  浅拷贝就是拷贝指向原来对象的指针，使原对象的引用计数+1，可以理解为创建了一个指向原对象的新指针而已，并没有创建一个全新的对象。</p>
@@ -500,8 +498,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/18/iOS 沙盒路径/" rel="prev" title="iOS 沙盒路径">
-                iOS 沙盒路径 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/18/iOS SDK(动态库:静态库)/" rel="prev" title="iOS SDK(动态库/静态库)">
+                iOS SDK(动态库/静态库) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

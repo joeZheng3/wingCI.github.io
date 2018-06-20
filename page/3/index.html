@@ -588,35 +588,14 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
       
         
-          
-            <hr>
-<h2 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h2><p>在ARC中修饰符是__strong，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__strong NSObject *obj;</span><br></pre></td></tr></table></figure>
-<p>不加修饰符的话默认都是__strong。</p>
-<h2 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h2><p>在ARC中修饰符是__weak，比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__weak NSObject *obj;</span><br></pre></td></tr></table></figure>
-<h2 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h2><p>强引用持有对象，而弱引用不持有对象.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__strong NSObject *obj1=[[NSObject alloc] init];</span><br><span class="line">    </span><br><span class="line">    __strong NSObject *obj2=obj1;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@,%@&quot;,obj1,obj2);</span><br><span class="line">    </span><br><span class="line">    obj1=nil;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@,%@&quot;,obj1,obj2);</span><br><span class="line"></span><br><span class="line">    //输出 :</span><br><span class="line">    //&lt;NSObject: 0x7fef53708b80&gt;,&lt;NSObject: 0x7fef53708b80&gt;</span><br><span class="line">    //(null),&lt;NSObject: 0x7fef53708b80&gt;</span><br></pre></td></tr></table></figure>
-<p>将obj2声明改为__weak</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__strong NSObject *obj1=[[NSObject alloc] init];</span><br><span class="line">    </span><br><span class="line">    __weak NSObject *obj2=obj1;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@,%@&quot;,obj1,obj2);</span><br><span class="line">    </span><br><span class="line">    obj1=nil;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@,%@&quot;,obj1,obj2);</span><br><span class="line"></span><br><span class="line">    //输出 :</span><br><span class="line">    //&lt;NSObject: 0x7fef53708b80&gt;,&lt;NSObject: 0x7fef53708b80&gt;</span><br><span class="line">    //(null),(null)</span><br></pre></td></tr></table></figure>
-<p>从上面可以看出使用<strong>strong 和</strong>weak的区别，因为strong的对象会使retainCount+1，而weak的并不会。<br>所以第一个例子的retainCount为2，obj1=nil之后retainCount为1，并不会对obj2造成影响，而第二个例子obj1=nil之后retainCount 为0了，内存也跟着释放了，所以obj2也为nil。</p>
-<h2 id="weak与assign区别"><a href="#weak与assign区别" class="headerlink" title="weak与assign区别"></a>weak与assign区别</h2><p>weak和MRC时代的assign的区别，两者都可以用于弱引用，但是内存释放后使用weak会将对象置nil，而assign不会，会造成野指针，现在assign一般只用在基础类型。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>至于什么时候用strong 和weak？<br>平时一般都是用strong，也就是默认不添加，在会照成循环引用时才使用weak。</p>
-<p>当两个不同的对象各有一个强引用指向对方时就造成循环引用，会导致对象无法释放，例如我们常用的delegate,见图</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1024570-6ab8b253c52b0a88.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/603" alt=""></p>
-<p>这就是我们在申明delegate时都是用weak的原因（MRC的话是用assign）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, weak) id&lt;Delegate&gt;delegate</span><br></pre></td></tr></table></figure>
-<p>block的使用也会照成循环引用，比如当一个对象持有block，而该block又持有该对象时，类似下面的伪代码会照成循环引用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[self block:^&#123;</span><br><span class="line">    self.value=1;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-<p>应该改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__weak typeof(self) weakself=self;</span><br><span class="line">[self block:^&#123;</span><br><span class="line">    weakself.value=1;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-<p>但并不是block里都需要用weak，例如下面的代码并不会照成循环引用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[UIView animateWithDuration:0.2 animations:^&#123;   </span><br><span class="line">    self.value=1;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-<p>注意：只有该对象持有block，而block里的代码块又持有该对象时才需要用到weak。</p>
-<p>NSTimer 也会照成循环引用，所以使用了NSTimer后，释放资源前要先调用invalidate方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Timer invalidate];</span><br><span class="line">Timer = nil;</span><br></pre></td></tr></table></figure>
-
-          
+          <hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/01/18/iOS浅谈强弱引用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
