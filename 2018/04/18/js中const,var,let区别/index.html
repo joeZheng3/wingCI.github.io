@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+.pace .pace-progress {
+background: #1E92FB; /*进度条颜色*/
+height: 3px;
+}
+.pace .pace-progress-inner {
+box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+}
+.pace .pace-activity {
+border-top-color: #1E92FB;    /*上边框颜色*/
+border-left-color: #1E92FB;    /*左边框颜色*/
+}
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ES6," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6踩过的语法坑">
+<meta property="og:url" content="http://yoursite.com/2018/04/18/js中const,var,let区别/index.html">
+<meta property="og:site_name" content="WingChit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tKfTcgy1fh7n4us7v0j30dw043aa0.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tKfTcgy1fh7uc992vaj30go0a074e.jpg">
+<meta property="og:image" content="https://www.2cto.com/uploadfile/Collfiles/20161209/20161209093907307.png">
+<meta property="og:image" content="https://www.2cto.com/uploadfile/Collfiles/20161209/20161209093907308.png">
+<meta property="og:updated_time" content="2018-07-10T12:54:23.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6踩过的语法坑">
+<meta name="twitter:image" content="https://ww4.sinaimg.cn/large/006tKfTcgy1fh7n4us7v0j30dw043aa0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/18/js中const,var,let区别/"/>
+
+
+
+
+
+  <title>ES6踩过的语法坑 | WingChit</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/wingci"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WingChit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zero</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/18/js中const,var,let区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wingci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WingChit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ES6踩过的语法坑</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T18:31:15+08:00">
+                2018-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/18/js中const,var,let区别/" class="leancloud_visitors" data-flag-title="ES6踩过的语法坑">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,441
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>整理一些项目中遇到的JS语法的坑</p>
+<h2 id="export及export-default的区别"><a href="#export及export-default的区别" class="headerlink" title="export及export default的区别"></a>export及export default的区别</h2><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>相信很多人都使用过export、export default、import，然而它们到底有什么区别呢？ </p>
+<p>在JavaScript ES6中，<strong>export与export default</strong>均可用于导出常量、函数、文件、模块等，你可以在其它文件或模块中通过import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用，但在一个文件或模块中，export、import可以有多个，export default仅有一个。<br>具体使用： </p>
+<h3 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo1.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> str = <span class="string">'hello world'</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo2.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; str, f &#125; <span class="keyword">from</span> <span class="string">'demo1'</span> <span class="comment">//也可以分开写两次，导入的时候带花括号</span></span><br></pre></td></tr></table></figure>
+<h3 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo1.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">const</span> str = <span class="string">'hello world'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo2.js</span></span><br><span class="line"><span class="keyword">import</span> str <span class="keyword">from</span> <span class="string">'demo1'</span> <span class="comment">//导入的时候没有花括号</span></span><br></pre></td></tr></table></figure>
+<h2 id="js中const-var-let区别"><a href="#js中const-var-let区别" class="headerlink" title="js中const,var,let区别"></a>js中const,var,let区别</h2><p>1.const定义的变量不可以修改，而且必须初始化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">const</span> b = <span class="number">2</span>;<span class="comment">//正确</span></span><br><span class="line"><span class="number">2</span> <span class="comment">// const b;//错误，必须初始化 </span></span><br><span class="line"><span class="number">3</span> <span class="built_in">console</span>.log(<span class="string">'函数外const定义b：'</span> + b);<span class="comment">//有输出值</span></span><br><span class="line"><span class="number">4</span> <span class="comment">// b = 5;</span></span><br><span class="line"><span class="number">5</span> <span class="comment">// console.log('函数外修改const定义b：' + b);//无法输出</span></span><br></pre></td></tr></table></figure>
+<p>2.var定义的变量可以修改，如果不初始化会输出undefined，不会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="number">2</span> <span class="comment">// var a;//不会报错</span></span><br><span class="line"><span class="number">3</span> <span class="built_in">console</span>.log(<span class="string">'函数外var定义a：'</span> + a);<span class="comment">//可以输出a=1</span></span><br><span class="line"><span class="number">4</span> <span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="number">5</span> a = <span class="number">4</span>;</span><br><span class="line"><span class="number">6</span> <span class="built_in">console</span>.log(<span class="string">'函数内var定义a：'</span> + a);<span class="comment">//可以输出a=4</span></span><br><span class="line"><span class="number">7</span> &#125; </span><br><span class="line"><span class="number">8</span> change();</span><br><span class="line"><span class="number">9</span> <span class="built_in">console</span>.log(<span class="string">'函数调用后var定义a为函数内部修改值：'</span> + a);<span class="comment">//可以输出a=4</span></span><br></pre></td></tr></table></figure>
+<p>3.let是块级作用域，函数内部使用let定义后，对函数外部无影响。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">let</span> c = <span class="number">3</span>;</span><br><span class="line"><span class="number">2</span> <span class="built_in">console</span>.log(<span class="string">'函数外let定义c：'</span> + c);<span class="comment">//输出c=3</span></span><br><span class="line"><span class="number">3</span> <span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="number">4</span> <span class="keyword">let</span> c = <span class="number">6</span>;</span><br><span class="line"><span class="number">5</span> <span class="built_in">console</span>.log(<span class="string">'函数内let定义c：'</span> + c);<span class="comment">//输出c=6</span></span><br><span class="line"><span class="number">6</span> &#125; </span><br><span class="line"><span class="number">7</span> change();</span><br><span class="line"><span class="number">8</span> <span class="built_in">console</span>.log(<span class="string">'函数调用后let定义c不受函数内部定义影响：'</span> + c);<span class="comment">//输出c=3</span></span><br></pre></td></tr></table></figure>
+<h2 id="ES6与ES5函数定义区别"><a href="#ES6与ES5函数定义区别" class="headerlink" title="ES6与ES5函数定义区别"></a>ES6与ES5函数定义区别</h2><p>主要是ES6 可以去除function的定义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// es5</span></span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// es6 箭头函数写法，当函数直接被return时，可以省略函数体的括号</span></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b;</span><br><span class="line"></span><br><span class="line"><span class="comment">// es5</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">20</span>；</span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// es6</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">const</span> a = <span class="number">20</span>;</span><br><span class="line">   <span class="keyword">const</span> b = <span class="number">30</span>;</span><br><span class="line">   <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ES6省略冒号与-function-关键字"><a href="#ES6省略冒号与-function-关键字" class="headerlink" title="ES6省略冒号与 function 关键字"></a>ES6省略冒号与 function 关键字</h2><p>对象初始化简写</p>
+<p>ES5我们对于对象都是以键值对的形式书写，是有可能出现键值对重名的。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">people</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name: name,</span><br><span class="line">        age: age</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>键值对重名，ES6可以简写如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">people</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name,</span><br><span class="line">        age</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ES6 同样改进了为对象字面量方法赋值的语法。ES5为对象添加方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people = &#123;</span><br><span class="line">     name: <span class="string">'lux'</span>,</span><br><span class="line">     getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>ES6通过省略冒号与 function 关键字，将这个语法变得更简洁</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people = &#123;</span><br><span class="line">    name: <span class="string">'lux'</span>,</span><br><span class="line">    getName () &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ES6 对象提供了 Object.assign()这个方法来实现浅复制。<br>Object.assign() 可以把任意多个源对象自身可枚举的属性拷贝给目标对象，然后返回目标对象。第一参数即为目标对象。在实际项目中，我们为了不改变源对象。一般会把目标对象传为{}</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> objA = &#123; <span class="attr">name</span>: <span class="string">'cc'</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;</span><br><span class="line">    <span class="keyword">const</span> objB = &#123; <span class="attr">address</span>: <span class="string">'beijing'</span> &#125;</span><br><span class="line">    <span class="keyword">const</span> objC = &#123;&#125; <span class="comment">// 这个为目标对象</span></span><br><span class="line">    <span class="keyword">const</span> obj = <span class="built_in">Object</span>.assign(objC, objA, objB)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 我们将 objA objB objC obj 分别输出看看</span></span><br><span class="line">    <span class="built_in">console</span>.log(objA)   <span class="comment">// &#123; name: 'cc', age: 18 &#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(objB) <span class="comment">// &#123; address: 'beijing' &#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(objC) <span class="comment">// &#123; name: 'cc', age: 18, address: 'beijing' &#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(obj) <span class="comment">// &#123; name: 'cc', age: 18, address: 'beijing' &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是的，目标对象ObjC的值被改变了。</span></span><br><span class="line">    <span class="comment">// so，如果objC也是你的一个源对象的话。请在objC前面填在一个目标对象&#123;&#125;</span></span><br><span class="line">    <span class="built_in">Object</span>.assign(&#123;&#125;, objC, objA, objB)</span><br></pre></td></tr></table></figure>
+<h2 id="JS常见的模块写法"><a href="#JS常见的模块写法" class="headerlink" title="JS常见的模块写法"></a>JS常见的模块写法</h2><h3 id="为什么有模块概念"><a href="#为什么有模块概念" class="headerlink" title="为什么有模块概念"></a>为什么有模块概念</h3><p>理想情况下，开发者只需要实现核心的业务逻辑，其他都可以加载别人已经写好的模块。</p>
+<p>但是，Javascript不是一种模块化编程语言，在es6以前，它是不支持”类”（class），所以也就没有”模块”（module）了。</p>
+<h3 id="require时代"><a href="#require时代" class="headerlink" title="require时代"></a>require时代</h3><p>Javascript社区做了很多努力，在现有的运行环境中，实现”模块”的效果。</p>
+<h3 id="原始写法"><a href="#原始写法" class="headerlink" title="原始写法"></a>原始写法</h3><p>模块就是实现特定功能的一组方法。<br>只要把不同的函数（以及记录状态的变量）简单地放在一起，就算是一个模块。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">m1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">m2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　<span class="comment">//...　　</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的函数m1()和m2()，组成一个模块。使用的时候，直接调用就行了。</p>
+<p>这种做法的缺点很明显：”污染”了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系</p>
+<h3 id="对象写法"><a href="#对象写法" class="headerlink" title="对象写法"></a>对象写法</h3><p>为了解决上面的缺点，可以把模块写成一个对象，所有的模块成员都放到这个对象里面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> module1 = <span class="keyword">new</span> <span class="built_in">Object</span>(&#123;</span><br><span class="line">_count : <span class="number">0</span>,</span><br><span class="line">　m1 : <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">　　<span class="comment">//...</span></span><br><span class="line">　&#125;,</span><br><span class="line">　m2 : <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">　　<span class="comment">//...</span></span><br><span class="line">　&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的函数m1()和m2(），都封装在module1对象里。使用的时候，就是调用这个对象的属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">module1.m1();</span><br></pre></td></tr></table></figure>
+<p>这样的写法会暴露所有模块成员，内部状态可以被外部改写。比如，外部代码可以直接改变内部计数器的值。</p>
+<h3 id="立即执行函数写法"><a href="#立即执行函数写法" class="headerlink" title="立即执行函数写法"></a>立即执行函数写法</h3><p>使用”立即执行函数”（Immediately-Invoked Function Expression，IIFE），可以达到不暴露私有成员的目的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> _count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> m1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">alert(_count)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> m2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">alert(_count + <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">m1: m1,</span><br><span class="line">m2: m2</span><br><span class="line">&#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>使用上面的写法，外部代码无法读取内部的_count变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　<span class="built_in">console</span>.info(<span class="built_in">module</span>._count); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>module就是Javascript模块的基本写法。</p>
+<h3 id="主流模块规范"><a href="#主流模块规范" class="headerlink" title="主流模块规范"></a>主流模块规范</h3><p>在es6以前，还没有提出一套官方的规范,从社区和框架推广程度而言,目前通行的javascript模块规范有两种：CommonJS 和 AMD</p>
+<h4 id="CommonJS规范"><a href="#CommonJS规范" class="headerlink" title="CommonJS规范"></a>CommonJS规范</h4><p><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fh7n4us7v0j30dw043aa0.jpg" alt=""></p>
+<p>2009年，美国程序员Ryan Dahl创造了node.js项目，将javascript语言用于服务器端编程。</p>
+<p>这标志”Javascript模块化编程”正式诞生。前端的复杂程度有限，没有模块也是可以的，但是在服务器端，一定要有模块，与操作系统和其他应用程序互动，否则根本没法编程。</p>
+<p>node编程中最重要的思想之一就是模块，而正是这个思想，让JavaScript的大规模工程成为可能。模块化编程在js界流行，也是基于此，随后在浏览器端，requirejs和seajs之类的工具包也出现了，可以说在对应规范下，require统治了ES6之前的所有模块化编程，即使现在，在ES6 module被完全实现之前，还是这样。</p>
+<p>在CommonJS中,暴露模块使用module.exports和exports，很多人不明白暴露对象为什么会有两个,后面会介绍区别</p>
+<p>在CommonJS中，有一个全局性方法require()，用于加载模块。假定有一个数学模块math.js，就可以像下面这样加载</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'math'</span>);</span><br></pre></td></tr></table></figure>
+<p>然后，就可以调用模块提供的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　<span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'math'</span>);</span><br><span class="line">　math.add(<span class="number">2</span>,<span class="number">3</span>); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<p>正是由于CommonJS 使用的require方式的推动，才有了后面的AMD、CMD 也采用的require方式来引用模块的风格</p>
+<h4 id="AMD规范"><a href="#AMD规范" class="headerlink" title="AMD规范"></a>AMD规范</h4><h4 id="CMD规范"><a href="#CMD规范" class="headerlink" title="CMD规范"></a>CMD规范</h4><h4 id="CMD与AMD区别"><a href="#CMD与AMD区别" class="headerlink" title="CMD与AMD区别"></a>CMD与AMD区别</h4><p>AMD和CMD最大的区别是对依赖模块的执行时机处理不同，而不是加载的时机或者方式不同，二者皆为异步加载模块。</p>
+<p>AMD依赖前置，js可以方便知道依赖模块是谁，立即加载；</p>
+<p>而CMD就近依赖，需要使用把模块变为字符串解析一遍才知道依赖了那些模块，这也是很多人诟病CMD的一点，牺牲性能来带来开发的便利性，实际上解析模块用的时间短到可以忽略。</p>
+<h4 id="现阶段标准"><a href="#现阶段标准" class="headerlink" title="现阶段标准"></a>现阶段标准</h4><p><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fh7uc992vaj30go0a074e.jpg" alt=""></p>
+<p>ES6标准发布后，module成为标准，标准使用是以export指令导出接口，以import引入模块，但是在我们一贯的node模块中，我们依然采用的是CommonJS规范，使用require引入模块，使用module.exports导出接口。</p>
+<h4 id="export导出模块"><a href="#export导出模块" class="headerlink" title="export导出模块"></a>export导出模块</h4><p>export语法声明用于导出函数、对象、指定文件（或模块）的原始值。</p>
+<blockquote>
+<p>注意：在node中使用的是exports,不要混淆了</p>
+</blockquote>
+<p>使用名称导出一个模块时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// "my-module.js" 模块</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">cube</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="built_in">Math</span>.PI + <span class="built_in">Math</span>.SQRT2;</span><br><span class="line"><span class="keyword">export</span> &#123; foo &#125;;</span><br></pre></td></tr></table></figure>
+<p>在另一个模块（脚本文件）中，我们可以像下面这样引用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; cube, foo &#125; <span class="keyword">from</span> <span class="string">'my-module'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">3</span>)); <span class="comment">// 27</span></span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// 4.555806215962888</span></span><br></pre></td></tr></table></figure>
+<p>使用默认导出一个模块时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// "my-module.js"模块</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在另一个模块（脚本文件）中，我们可以像下面这样引用，相对名称导出来说使用更为简单：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 "my-module.js"模块</span></span><br><span class="line"><span class="keyword">import</span> cube <span class="keyword">from</span> <span class="string">'my-module'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">3</span>)); <span class="comment">// 27</span></span><br></pre></td></tr></table></figure>
+<h4 id="import引入模块"><a href="#import引入模块" class="headerlink" title="import引入模块"></a>import引入模块</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> defaultMember <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> name <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; member &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; member <span class="keyword">as</span> alias &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; member1 , member2 &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; member1 , member2 <span class="keyword">as</span> alias2 , [...] &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> defaultMember, &#123; member [ , [...] ] &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> defaultMember, * <span class="keyword">as</span> name <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"module-name"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="JS中Require函数"><a href="#JS中Require函数" class="headerlink" title="JS中Require函数"></a>JS中Require函数</h2><p>就是一种CommonJS规范</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'math'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　<span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'math'</span>);</span><br><span class="line">　math.add(<span class="number">2</span>,<span class="number">3</span>); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<p>ps.webstorm不能识别一些js方法，如require</p>
+<p>在 Library中添加</p>
+<p><img src="https://www.2cto.com/uploadfile/Collfiles/20161209/20161209093907307.png" alt=""></p>
+<p><img src="https://www.2cto.com/uploadfile/Collfiles/20161209/20161209093907308.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/18/Vue2.0+组件库/" rel="next" title="Vue2.0+常见组件库">
+                <i class="fa fa-chevron-left"></i> Vue2.0+常见组件库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wingci</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export及export-default的区别"><span class="nav-number">2.</span> <span class="nav-text">export及export default的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">2.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例1"><span class="nav-number">2.2.</span> <span class="nav-text">案例1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例2"><span class="nav-number">2.3.</span> <span class="nav-text">案例2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js中const-var-let区别"><span class="nav-number">3.</span> <span class="nav-text">js中const,var,let区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6与ES5函数定义区别"><span class="nav-number">4.</span> <span class="nav-text">ES6与ES5函数定义区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6省略冒号与-function-关键字"><span class="nav-number">5.</span> <span class="nav-text">ES6省略冒号与 function 关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS常见的模块写法"><span class="nav-number">6.</span> <span class="nav-text">JS常见的模块写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么有模块概念"><span class="nav-number">6.1.</span> <span class="nav-text">为什么有模块概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#require时代"><span class="nav-number">6.2.</span> <span class="nav-text">require时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原始写法"><span class="nav-number">6.3.</span> <span class="nav-text">原始写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象写法"><span class="nav-number">6.4.</span> <span class="nav-text">对象写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#立即执行函数写法"><span class="nav-number">6.5.</span> <span class="nav-text">立即执行函数写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主流模块规范"><span class="nav-number">6.6.</span> <span class="nav-text">主流模块规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CommonJS规范"><span class="nav-number">6.6.1.</span> <span class="nav-text">CommonJS规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AMD规范"><span class="nav-number">6.6.2.</span> <span class="nav-text">AMD规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMD规范"><span class="nav-number">6.6.3.</span> <span class="nav-text">CMD规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMD与AMD区别"><span class="nav-number">6.6.4.</span> <span class="nav-text">CMD与AMD区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#现阶段标准"><span class="nav-number">6.6.5.</span> <span class="nav-text">现阶段标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#export导出模块"><span class="nav-number">6.6.6.</span> <span class="nav-text">export导出模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#import引入模块"><span class="nav-number">6.6.7.</span> <span class="nav-text">import引入模块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS中Require函数"><span class="nav-number">7.</span> <span class="nav-text">JS中Require函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wingci</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">67.9k</span>
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+<div class="powered-by"></div>
+<span class="post-count">博客全站共67.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("YVk67ES9JxH4F81acMEg0yCb-gzGzoHsz", "ez7a1paTd3EuT97I2TlO9lFS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
