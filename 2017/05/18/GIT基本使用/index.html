@@ -105,7 +105,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 <meta property="og:image" content="https://cdn.liaoxuefeng.com/cdn/files/attachments/0013849088235627813efe7649b4f008900e5365bb72323000/0">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3985563-04bac8d079111a9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/614">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3985563-70440791ecd54631.png?imageMogr2/auto-orient/">
-<meta property="og:updated_time" content="2018-06-29T10:38:58.652Z">
+<meta property="og:updated_time" content="2018-07-14T09:12:22.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GIT基本使用">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3985563-ade5b67f52f8675c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
@@ -366,7 +366,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,156
+                  2,493
                 </span>
               
 
@@ -382,7 +382,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  9
                 </span>
               
             </div>
@@ -567,7 +567,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 <ul>
 <li>head 指针指向表示当前活跃的节点（分支）。</li>
 </ul>
-<h1 id="实用场景"><a href="#实用场景" class="headerlink" title="实用场景"></a>实用场景</h1><p><img src="https://upload-images.jianshu.io/upload_images/3985563-04bac8d079111a9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/614" alt=""></p>
+<h1 id="实用场景一"><a href="#实用场景一" class="headerlink" title="实用场景一"></a>实用场景一</h1><p><img src="https://upload-images.jianshu.io/upload_images/3985563-04bac8d079111a9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/614" alt=""></p>
 <ol>
 <li>通过gitlab，github，coding，bitbucket等git服务器平台，创建Git远程仓库，得到地址</li>
 <li>设置好RSA的公钥，私钥，粘贴私钥 git clone 项目地址，把项目拷贝到本地仓库</li>
@@ -578,6 +578,19 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 <li>本地创建分支git branch xxx ，命名dev，打上Tag，提交分支到远程分支 git push origin 分支名，假设有N个人，提交分支到项目中。</li>
 <li>项目管理员，收到分支后，会先 clone 该分支到本地仓库，然后，检查写好的代码无误后，切换本地仓库的分支到mater(eg. git branch 查看分支信息—&gt;git branch master 切换分支到master )，使用命令git merge 分支名（eg. git merge dev），在本地仓库，此时已经完成分支的合并。</li>
 <li>将本地仓库的主分支master 推送远程的主分支master。（eg. 只有项目拥有者才有权限推送本地master到远程master)</li>
+</ol>
+<h1 id="实用场景二"><a href="#实用场景二" class="headerlink" title="实用场景二"></a>实用场景二</h1><ol>
+<li>git clone <a href="https://xxxxxx" target="_blank" rel="noopener">https://xxxxxx</a></li>
+<li>发现本地没有分支，git branch -a ，查看所有分支， 有远程分支origin和本地分支</li>
+<li>git checkout -b 本地分支名称（ps.尽量和远程分支名称一样） origin/远程分支名  （使用该方式会在本地新建分支x，并自动切换到该本地分支x。）</li>
+<li>或者 git fetch origin 远程分支名称:本地分支名称 </li>
+<li>把分支来下来后,git pull （相当于git fetch 和 git merge，即更新远程仓库的代码到本地仓库，然后将内容合并到当前分支。）</li>
+<li>修改代码，先git add和git commit，避免多人开发把本地的代码覆盖掉，然后git pull，拉取远程代码到本地，一般多人同时修改同一个文件会有冲突文件，此时只需要把对方的代码复制粘贴上，解决冲突即可，（Xcode的StoryBoard，只需要修改Source Code里的Xml即可），然后解决冲突后，在git commit一次即可</li>
+</ol>
+<h1 id="实用场景三"><a href="#实用场景三" class="headerlink" title="实用场景三"></a>实用场景三</h1><ol>
+<li>不小心修改了很多别人的代码文件结构，想强行覆盖本地代码，重新开始</li>
+<li>可以 git log 查看 commit id，然后 git resset （commitid），恢复代码到最原始的状态</li>
+<li>然后正常git pull 代码下来即可</li>
 </ol>
 <h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><blockquote>
 <p>还没提交代码，不小心按了 Discard All Change（放弃所有操作）</p>
@@ -657,8 +670,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/18/iOS软件整体思考/" rel="next" title="iOS软件整体思考">
-                <i class="fa fa-chevron-left"></i> iOS软件整体思考
+              <a href="/2017/05/12/MAC+Hexo/" rel="next" title="MAC+HEXO">
+                <i class="fa fa-chevron-left"></i> MAC+HEXO
               </a>
             
           </div>
@@ -667,8 +680,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/18/Html+CSS+JS入门/" rel="prev" title="Html+CSS+JS入门">
-                Html+CSS+JS入门 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/18/iOS软件整体思考/" rel="prev" title="iOS软件整体思考">
+                iOS软件整体思考 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -801,7 +814,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Homebrew安装"><span class="nav-number">1.</span> <span class="nav-text">Homebrew安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT安装"><span class="nav-number">2.</span> <span class="nav-text">GIT安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT与SVN区别"><span class="nav-number">3.</span> <span class="nav-text">GIT与SVN区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT工作原理图"><span class="nav-number">4.</span> <span class="nav-text">GIT工作原理图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT原理"><span class="nav-number">5.</span> <span class="nav-text">GIT原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">6.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT通信原理"><span class="nav-number"></span> <span class="nav-text">GIT通信原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT通信公钥"><span class="nav-number"></span> <span class="nav-text">GIT通信公钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT-HEAD概念"><span class="nav-number"></span> <span class="nav-text">GIT HEAD概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实用场景"><span class="nav-number"></span> <span class="nav-text">实用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见问题"><span class="nav-number"></span> <span class="nav-text">常见问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作核心"><span class="nav-number"></span> <span class="nav-text">操作核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number"></span> <span class="nav-text">思考</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Homebrew安装"><span class="nav-number">1.</span> <span class="nav-text">Homebrew安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT安装"><span class="nav-number">2.</span> <span class="nav-text">GIT安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT与SVN区别"><span class="nav-number">3.</span> <span class="nav-text">GIT与SVN区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT工作原理图"><span class="nav-number">4.</span> <span class="nav-text">GIT工作原理图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GIT原理"><span class="nav-number">5.</span> <span class="nav-text">GIT原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">6.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT通信原理"><span class="nav-number"></span> <span class="nav-text">GIT通信原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT通信公钥"><span class="nav-number"></span> <span class="nav-text">GIT通信公钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT-HEAD概念"><span class="nav-number"></span> <span class="nav-text">GIT HEAD概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实用场景一"><span class="nav-number"></span> <span class="nav-text">实用场景一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实用场景二"><span class="nav-number"></span> <span class="nav-text">实用场景二</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实用场景三"><span class="nav-number"></span> <span class="nav-text">实用场景三</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见问题"><span class="nav-number"></span> <span class="nav-text">常见问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作核心"><span class="nav-number"></span> <span class="nav-text">操作核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number"></span> <span class="nav-text">思考</span></a></div>
             
 
           </div>
@@ -836,7 +849,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">69.2k</span>
+    <span title="Site words total count">69.5k</span>
   
 </div>
 
@@ -862,7 +875,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
 <div class="theme-info">
 <div class="powered-by"></div>
-<span class="post-count">博客全站共69.2k字</span>
+<span class="post-count">博客全站共69.5k字</span>
 </div>
 
         
