@@ -83,7 +83,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
 
 
-  <meta name="keywords" content="HEXO," />
+  <meta name="keywords" content="less," />
 
 
 
@@ -94,15 +94,15 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
 
 
-<meta name="keywords" content="HEXO">
+<meta name="keywords" content="less">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MAC+HEXO">
-<meta property="og:url" content="http://yoursite.com/2017/05/12/MAC+Hexo/index.html">
+<meta property="og:title" content="less的嵌套">
+<meta property="og:url" content="http://yoursite.com/2017/05/18/less的嵌套/index.html">
 <meta property="og:site_name" content="WingChit">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-29T10:39:47.402Z">
+<meta property="og:updated_time" content="2018-07-19T07:39:42.842Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MAC+HEXO">
+<meta name="twitter:title" content="less的嵌套">
 
 
 
@@ -132,13 +132,13 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/12/MAC+Hexo/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/18/less的嵌套/"/>
 
 
 
 
 
-  <title>MAC+HEXO | WingChit</title>
+  <title>less的嵌套 | WingChit</title>
   
 
 
@@ -265,7 +265,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/12/MAC+Hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/less的嵌套/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wingci">
@@ -282,7 +282,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
         
         
-          <h1 class="post-title" itemprop="name headline">MAC+HEXO</h1>
+          <h1 class="post-title" itemprop="name headline">less的嵌套</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T16:31:15+08:00">
-                2017-05-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T16:32:15+08:00">
+                2017-05-18
               </time>
             
 
@@ -317,8 +317,8 @@ border-left-color: #1E92FB;    /*左边框颜色*/
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
+                  <a href="/categories/less/" itemprop="url" rel="index">
+                    <span itemprop="name">less</span>
                   </a>
                 </span>
 
@@ -334,7 +334,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
 
           
           
-             <span id="/2017/05/12/MAC+Hexo/" class="leancloud_visitors" data-flag-title="MAC+HEXO">
+             <span id="/2017/05/18/less的嵌套/" class="leancloud_visitors" data-flag-title="less的嵌套">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -360,7 +360,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,047
+                  283
                 </span>
               
 
@@ -376,7 +376,7 @@ border-left-color: #1E92FB;    /*左边框颜色*/
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  1
                 </span>
               
             </div>
@@ -399,85 +399,14 @@ border-left-color: #1E92FB;    /*左边框颜色*/
       
         <hr>
 <a id="more"></a>
-<h2 id="HEXO简介"><a href="#HEXO简介" class="headerlink" title="HEXO简介"></a>HEXO简介</h2><ul>
-<li>Hexo是一款基于Node.js的静态博客生成程序，作者是台湾的<a href="https://zespia.tw/" target="_blank" rel="noopener">tommy35</a>.</li>
+<p><strong>less中的嵌套类似于html中的标签的嵌套</strong></p>
+<h2 id="举个🌰"><a href="#举个🌰" class="headerlink" title="举个🌰"></a>举个🌰</h2><h3 id="传统CSS写法"><a href="#传统CSS写法" class="headerlink" title="传统CSS写法"></a>传统CSS写法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"navBar"</span>&gt;</span><br><span class="line">            &lt;ul  <span class="class"><span class="keyword">class</span></span>=<span class="string">"list"</span>&gt;</span><br><span class="line">                  &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>我是列表1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">                  &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>我是列表2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">                  &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>我是列表3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">                  &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>我是列表4<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">            &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#navBar &#123;</span><br><span class="line">          width: <span class="number">500</span>px;</span><br><span class="line">          margin: <span class="number">0</span> auto;</span><br><span class="line">          border: <span class="number">1</span>px solid red;</span><br><span class="line">          border-radius: <span class="number">10</span>px;</span><br><span class="line">&#125;</span><br><span class="line">#navBar &gt; .list &gt; li &#123;</span><br><span class="line">          list-style: none;</span><br><span class="line">          margin: <span class="number">10</span>px;</span><br><span class="line">&#125;</span><br><span class="line">#navBar &gt; .list &gt; li:hover &#123;</span><br><span class="line">          background: yellow;</span><br><span class="line">&#125;</span><br><span class="line">#navBar &gt; .list &gt; li &gt; span &#123;</span><br><span class="line">          font-size: <span class="number">16</span>px;</span><br><span class="line">          color: red;</span><br><span class="line">          height: <span class="number">20</span>px;</span><br><span class="line">          line-height: <span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line">#navBar &gt; .list &gt; li &gt; a &#123;</span><br><span class="line">          text-direction: none;</span><br><span class="line">          float: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Less写法"><a href="#Less写法" class="headerlink" title="Less写法"></a>Less写法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#navBar &#123;</span><br><span class="line">          width: <span class="number">500</span>px;</span><br><span class="line">          margin: <span class="number">0</span> auto;</span><br><span class="line">          border: <span class="number">1</span>px solid red;</span><br><span class="line">          border-radius: <span class="number">10</span>px;</span><br><span class="line">        li &#123;</span><br><span class="line">          list-style: none;</span><br><span class="line">          margin: <span class="number">10</span>px;</span><br><span class="line">          </span><br><span class="line">            &amp;:hover &#123;</span><br><span class="line">                  background: yellow;</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         span &#123;</span><br><span class="line">          font-size: <span class="number">16</span>px;</span><br><span class="line">          color: red;</span><br><span class="line">          height: <span class="number">20</span>px;</span><br><span class="line">          line-height: <span class="number">20</span>px;</span><br><span class="line">          &#125;</span><br><span class="line">          a &#123;</span><br><span class="line">          text-direction: none;</span><br><span class="line">          float: right;</span><br><span class="line">          &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="需要注意的是："><a href="#需要注意的是：" class="headerlink" title="需要注意的是："></a>需要注意的是：</h3><ul>
+<li>css不建议进行多层嵌套，嵌套的层数越多，性能就越差，所以尽量写同级；</li>
+<li>&amp;:表示它的上一级选择器，多用于伪类；</li>
 </ul>
-<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="Homebrew安装"><a href="#Homebrew安装" class="headerlink" title="Homebrew安装"></a>Homebrew安装</h3><ul>
-<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
-</ul>
-<h3 id="Node-Npm安装"><a href="#Node-Npm安装" class="headerlink" title="Node/Npm安装"></a>Node/Npm安装</h3><ul>
-<li>Homebrew安装：brew install node</li>
-<li>node -v:查看node版本<br>  npm -v：查看npm版本</li>
-</ul>
-<h3 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h3><ul>
-<li>图形化安装：<a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="noopener">http://sourceforge.net/projects/git-osx-installer/</a></li>
-<li>Homebrew安装：brew install git </li>
-</ul>
-<h3 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h3><ul>
-<li>sudo npm install -g hexo（-g:全局安装）  </li>
-</ul>
-<blockquote>
-<p>提示：官网上的安装 npm install -g hexo-cli，实际安装需要权限sudo</p>
-</blockquote>
-<h2 id="Hexo使用"><a href="#Hexo使用" class="headerlink" title="Hexo使用"></a>Hexo使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//终端cd到你选定的目录，执行hexo init命令</span><br><span class="line">hexo init xxxblog （xxxblog是你建立的文件夹名称）</span><br><span class="line"></span><br><span class="line">//cd到xxxblog文件夹下，安装npm</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">//开启hexo服务器</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>经过上面操作后，使用浏览器，打开网址<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> ，有Hexo页面显示说明安装启动Hexo服务成功。</p>
-<h2 id="Hexo常见命令"><a href="#Hexo常见命令" class="headerlink" title="Hexo常见命令"></a>Hexo常见命令</h2><ul>
-<li>hexo g （generate 生成静态文件）</li>
-<li>hexo s （server 启动服务器）</li>
-<li>hexo d （deploy 部署网站，部署网站前，需要预先生成静态文件）</li>
-<li>hexo clean （clean 清除缓存文件 (db.json) 和已生成的静态文件 (public)）</li>
-</ul>
-<h2 id="Github服务-Hexo"><a href="#Github服务-Hexo" class="headerlink" title="Github服务+Hexo"></a>Github服务+Hexo</h2><h3 id="使用Github为服务器目的"><a href="#使用Github为服务器目的" class="headerlink" title="使用Github为服务器目的"></a>使用Github为服务器目的</h3><ul>
-<li>免费</li>
-<li>免运维</li>
-<li>享受github全球节点加速</li>
-</ul>
-<h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><ul>
-<li>仓库命名规范：用户名.github.io固定写法，如wingci.github.io</li>
-</ul>
-<h3 id="创建连接公钥"><a href="#创建连接公钥" class="headerlink" title="创建连接公钥"></a>创建连接公钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">//本地会生成id_rsa（私钥），id_rsa.pub（公钥匙)</span><br><span class="line">ssh-keygen -t rsa -c &quot;邮箱地址&quot; </span><br><span class="line">//github服务器中，仓库设置里导入公钥信息，就可以完成与服务器的GIT交互了</span><br><span class="line">vim id_rsa.pub</span><br></pre></td></tr></table></figure>
-<h3 id="修改Hexo本地配置"><a href="#修改Hexo本地配置" class="headerlink" title="修改Hexo本地配置"></a>修改Hexo本地配置</h3><ul>
-<li><p>本地Blog目录的Hexo配置如下图显示：</p>
-<pre>
-_config.yml 
-db.json 
-node_modules 
-package.json
-scaffolds
-source
-themes
-</pre>
-</li>
-<li><p>一般修改 服务器软件 都是修改带有Config的文件，hexo也一样</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//cd xxxblog</span><br><span class="line">vim _config.yml</span><br><span class="line"></span><br><span class="line">//查看文件，设置关联</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/xxxx/xxxx.github.io.git  (xxxx为你的github用户名)</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>提示：在配置所有的_config.yml文件时（包括theme中的），在所有的冒号:后边都要加一个空格，否则执行hexo命令会报错，切记 切记</p>
-</blockquote>
-<ul>
-<li>在blog文件夹目录下执行生成静态页面命令</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate     或者：hexo g </span><br><span class="line">$ hexo deploy       或者：hexo d</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>提示1：此时若出现如下报错：ERROR Local hexo not found in ~/blog<br>ERROR Try runing: ‘npm install hexo –save’ ，则执行$ npm install hexo –save</p>
-</blockquote>
-<blockquote>
-<p>提示2：若执行命令hexo deploy仍然报错：无法连接git或找不到git，则执行如下命令来安装hexo-deployer-git：npm install hexo-deployer-git –save    </p>
-</blockquote>
-<blockquote>
-<p>提示3: 若你未关联Github，则执行hexo deploy命令时终端会提示你输入Github的用户名和密码，即Username for ‘<a href="https://github.com&#39;" target="_blank" rel="noopener">https://github.com&#39;</a>:  Password for ‘<a href="https://github.com&#39;" target="_blank" rel="noopener">https://github.com&#39;</a>:</p>
-</blockquote>
-<h2 id="使用Hexo发布文章"><a href="#使用Hexo发布文章" class="headerlink" title="使用Hexo发布文章"></a>使用Hexo发布文章</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//终端cd到blog文件夹下，执行如下命令新建文章</span><br><span class="line">hexo new &quot;postName&quot;  //postName.md的文件会建在目录/blog/source/_posts</span><br><span class="line">hexo generate   //生成静态页面</span><br><span class="line">hexo deploy   //将文章部署到Github</span><br></pre></td></tr></table></figure>
-<h2 id="安装主题-theme"><a href="#安装主题-theme" class="headerlink" title="安装主题(theme)"></a>安装主题(theme)</h2><ul>
-<li>以Next主题为例</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//终端cd到 blog 目录下</span><br><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br><span class="line">//将blog目录下_config.yml里theme的名称landscape修改为next</span><br><span class="line">cd blog || vim _config.yml</span><br><span class="line">//清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="line">hexo clean </span><br><span class="line">//生成缓存和静态文件</span><br><span class="line">hexo g  </span><br><span class="line">//重新部署到服务器</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<h2 id="HEXO常见报错"><a href="#HEXO常见报错" class="headerlink" title="HEXO常见报错"></a>HEXO常见报错</h2><ul>
-<li>hexo d后 ERROR Deployer not found: git</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<h2 id="博客同时部署到-GitHub-和-Coding"><a href="#博客同时部署到-GitHub-和-Coding" class="headerlink" title="博客同时部署到 GitHub 和 Coding"></a>博客同时部署到 GitHub 和 Coding</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 创建Coding仓库</span><br><span class="line">2. vim _config.yml,设置deploy</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: </span><br><span class="line">            github: https://github.com/gonghonglou/gonghonglou.github.io.git</span><br><span class="line">            coding: https://git.coding.net/gonghonglou/gonghonglou.git</span><br><span class="line">  branch: master</span><br><span class="line"> 3. cd 到本地 blog/source 目录下执行如下命令新建 Staticfile 文件,$ touch Staticfile  #名字必须是Staticfile,原因是 coding.net 需要以这个文件来作为静态文件部署的标志，就是说看到这个 Staticfile 就知道按照静态文件来发布。</span><br><span class="line"> 4. 执行发布命令 hexo g 、 hexo d</span><br><span class="line"> 5. 个人域名添加两条 CNAME 解析。将 wingci.github.io. 解析为 [海外] ，将 wingci.coding.me. 解析为 [默认]</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -495,7 +424,7 @@ themes
       
         <div class="post-tags">
           
-            <a href="/tags/HEXO/" rel="tag"># HEXO</a>
+            <a href="/tags/less/" rel="tag"># less</a>
           
         </div>
       
@@ -508,8 +437,8 @@ themes
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/13/Swift中Struct与Class区别/" rel="next" title="Swift中Struct与Class区别">
-                <i class="fa fa-chevron-left"></i> Swift中Struct与Class区别
+              <a href="/2017/05/18/原生js的ajax请求/" rel="next" title="原生js的ajax请求">
+                <i class="fa fa-chevron-left"></i> 原生js的ajax请求
               </a>
             
           </div>
@@ -518,8 +447,8 @@ themes
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/18/GIT基本使用/" rel="prev" title="GIT基本使用">
-                GIT基本使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/18/JSX和组件的概念/" rel="prev" title="React Native常用组件之View">
+                React Native常用组件之View <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,7 +581,7 @@ themes
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HEXO简介"><span class="nav-number">1.</span> <span class="nav-text">HEXO简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">2.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew安装"><span class="nav-number">2.1.</span> <span class="nav-text">Homebrew安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-Npm安装"><span class="nav-number">2.2.</span> <span class="nav-text">Node/Npm安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git安装"><span class="nav-number">2.3.</span> <span class="nav-text">Git安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo安装"><span class="nav-number">2.4.</span> <span class="nav-text">Hexo安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo使用"><span class="nav-number">3.</span> <span class="nav-text">Hexo使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo常见命令"><span class="nav-number">4.</span> <span class="nav-text">Hexo常见命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github服务-Hexo"><span class="nav-number">5.</span> <span class="nav-text">Github服务+Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Github为服务器目的"><span class="nav-number">5.1.</span> <span class="nav-text">使用Github为服务器目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建仓库"><span class="nav-number">5.2.</span> <span class="nav-text">创建仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建连接公钥"><span class="nav-number">5.3.</span> <span class="nav-text">创建连接公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改Hexo本地配置"><span class="nav-number">5.4.</span> <span class="nav-text">修改Hexo本地配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Hexo发布文章"><span class="nav-number">6.</span> <span class="nav-text">使用Hexo发布文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装主题-theme"><span class="nav-number">7.</span> <span class="nav-text">安装主题(theme)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HEXO常见报错"><span class="nav-number">8.</span> <span class="nav-text">HEXO常见报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客同时部署到-GitHub-和-Coding"><span class="nav-number">9.</span> <span class="nav-text">博客同时部署到 GitHub 和 Coding</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#举个🌰"><span class="nav-number">1.</span> <span class="nav-text">举个🌰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统CSS写法"><span class="nav-number">1.1.</span> <span class="nav-text">传统CSS写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Less写法"><span class="nav-number">1.2.</span> <span class="nav-text">Less写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要注意的是："><span class="nav-number">1.3.</span> <span class="nav-text">需要注意的是：</span></a></li></ol></li></ol></div>
             
 
           </div>
